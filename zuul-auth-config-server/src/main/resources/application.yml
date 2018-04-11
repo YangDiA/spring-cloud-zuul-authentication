@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/liumapp/spring-cloud-zuul-authentication/
+          search-paths: conf
+
+server:
+  port: 7001
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1234/eureka/
+
+
