@@ -3,6 +3,7 @@ package com.liumapp.auth.zuul.token.filter;
 import com.liumapp.auth.zuul.token.service.MultyUserDetailsService;
 import com.liumapp.auth.zuul.token.util.JwtTokenUtil;
 import io.jsonwebtoken.ExpiredJwtException;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 logger.error("an error occured during getting username from token", e);
             } catch (ExpiredJwtException e) {
                 logger.warn("the token is expired and not valid anymore", e);
+            }
+            if(StringUtils.isBlank(username)){
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+                return;
             }
         } else {
             logger.warn("couldn't find bearer string, will ignore the header");

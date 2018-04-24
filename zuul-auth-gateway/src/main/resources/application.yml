@@ -36,12 +36,13 @@ zuul:
     token-generator:
       serviceId: token-manager
       path: /**
+  ignoredHeaders: Authorization
 
 
 jwt:
   header: Authorization
   secret: mySecret
-  expiration: 604800
+  expiration: 60 #604800
   route:
     authentication:
       path: auth

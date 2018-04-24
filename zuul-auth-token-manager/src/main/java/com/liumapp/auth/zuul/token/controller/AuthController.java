@@ -67,7 +67,7 @@ public class AuthController {
     @RequestMapping(value = "/${jwt.route.authentication.path}/login", method = RequestMethod.POST)
     public ResponseEntity<?> login(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {
         logger.info("this is company login , and active info is : " + activeInfo);
-        authenticationRequest.setUsername(authenticationRequest.getEmail());
+        authenticationRequest.setUsername(authenticationRequest.getPhone());
         // Perform the security
         Authentication authentication = null;
         try {
@@ -81,9 +81,9 @@ public class AuthController {
             System.out.println(e.getMessage());
         }
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+
         // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByEmail(authenticationRequest.getEmail());
+        final UserDetails userDetails = userDetailsService.loadUserByPhone(authenticationRequest.getPhone());
 
         Result resut = Result.ok();
 
@@ -93,13 +93,61 @@ public class AuthController {
             resut.setMsg("密码错误");
             return ResponseEntity.ok(resut);
         }
-
+        SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         System.out.println(token);
         resut.setData(token);
         // Return the token
         return ResponseEntity.ok(resut);
     }
+
+    /**
+     * 刷新token
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/${jwt.route.authentication.refresh}/token", method = RequestMethod.POST)
+    public ResponseEntity<?> refreshAndAuthenticationToken(HttpServletRequest request) {
+        String authToken = request.getHeader(tokenHeader);
+        final String token = authToken.substring(7);
+        String phone = jwtTokenUtil.getPhoneFromToken(token);
+        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(phone);
+        Result resut = Result.ok();
+        if (jwtTokenUtil.canTokenBeRefreshed(token)) {
+            String refreshedToken = jwtTokenUtil.refreshToken(token);
+            resut.setData(token);
+            return ResponseEntity.ok(resut);
+        } else {
+            resut.setCode("1001");
+            resut.setMsg("刷新失败");
+            return ResponseEntity.ok(resut);
+        }
+    }
+
+    /**
+     *
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "/${jwt.route.authentication.path}/checktoken", method = RequestMethod.POST)
+    public ResponseEntity<?> checkAuthenticationToken(HttpServletRequest request) {
+        String authToken = request.getHeader(tokenHeader);
+        final String token = authToken.substring(7);
+        //String phone = jwtTokenUtil.getPhoneFromToken(token);
+       // JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(phone);
+        Result resut = Result.ok();
+        if (jwtTokenUtil.canTokenBeRefreshed(token)) {//没过期
+            resut.setData(true);
+            resut.setMsg("未过期");
+            return ResponseEntity.ok(resut);
+        } else {
+            resut.setData(false);
+            resut.setMsg("token过期");
+            return ResponseEntity.ok(resut);
+        }
+    }
+
+
 
     @RequestMapping(value = "/${jwt.route.authentication.path}/company", method = RequestMethod.POST)
     public ResponseEntity<?> createCompanyAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device) throws AuthenticationException {

@@ -3,6 +3,7 @@ package com.liumapp.auth.zuul.gateway.filter.auth;
 import com.liumapp.auth.zuul.gateway.auth.service.MultyUserDetailsService;
 import com.liumapp.auth.zuul.gateway.auth.util.JwtTokenUtil;
 import com.liumapp.auth.zuul.gateway.auth.util.SecurityExpression;
+import com.netflix.zuul.context.RequestContext;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -55,6 +56,10 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
                 return ;
             }
+        }
+        if(requestHeader != null){//zuul 传递 header
+            RequestContext ctx = RequestContext.getCurrentContext();
+            ctx.addZuulRequestHeader(this.tokenHeader,requestHeader);
         }
 
         chain.doFilter(request, response);

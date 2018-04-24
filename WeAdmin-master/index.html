@@ -294,26 +294,35 @@
 				var $ = layui.jquery;
 				$(function(){
 					var login = JSON.parse(localStorage.getItem("login"));
-					var token = localStorage.getItem("token");
+					//var token = localStorage.getItem("token");
 					//后端需要校验token是否过期,
-                    /*$.ajax({
-                        url: "http://localhost/personal-api/personal/list",
-                        data: {a:"a"},
+                    $.ajax({
+                        url: "/token-manager/unchk/auth/checktoken",
+                        headers: {"Authorization": localStorage.getItem('Authorization')},
                         type: "post",
                         dataType: "json",
                         contentType:"application/json",
                         success: function (data) {
-                            console.log(data);
+                           // console.log(data);
+                            if(data.data){
+                                return false;
+							}else{
+                                window.location.href='./login.html';
+                                return false;
+							}
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            if(XMLHttpRequest.status==401){
+                                location.href='./login.html'
+							}
                            // location.href='./login.html'
                         },
-                        beforeSend: function () {
-
+                        beforeSend: function (xhr) {
+                            //xhr.setRequestHeader("Authorization", localStorage.getItem('Authorization'));
                         },
                         complete: function () {
                         }
-                    });*/
+                    });
 
 					if(login){
 						if(login=0){
