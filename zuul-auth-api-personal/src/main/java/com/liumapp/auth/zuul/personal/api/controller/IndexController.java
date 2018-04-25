@@ -52,7 +52,12 @@ public class IndexController {
                 map.put("date", "2018-02-03");
                 map.put("category","新闻资讯");
                 map.put( "sort", "1");
-                map.put("recommend","");
+                if(i%2==0){
+                    map.put("recommend","checked");
+                }else {
+                    map.put("recommend","");
+                }
+
                 map.put("top","checked");
                 list.add(map);
             }

@@ -175,6 +175,24 @@
 								</a>
 							</li>
 							<li>
+								<a _href="./pages/admin/user/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>用户管理</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/admin/menu/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>菜单管理</cite>
+								</a>
+							</li>
+							<li>
+								<a _href="./pages/admin/role/list.html">
+									<i class="iconfont">&#xe6a7;</i>
+									<cite>角色菜单</cite>
+								</a>
+							</li>
+							<li>
 								<a _href="./pages/admin/cate.html">
 									<i class="iconfont">&#xe6a7;</i>
 									<cite>权限分类</cite>
@@ -252,12 +270,14 @@
 						</ul>
 					</li>
 				</ul>
+				<!--动态加载菜单-->
+				<!--<div class="navBar "></div>-->
 			</div>
 		</div>
 		<!-- <div class="x-slide_left"></div> -->
 		<!-- 左侧菜单结束 -->
 		<!-- 右侧主体开始 -->
-		<div class="page-content">
+		<div class="page-content"  lay-filter="bodyTab">
 			<div class="layui-tab tab" lay-filter="wenav_tab" id="WeTabTip" lay-allowclose="true">
 				<ul class="layui-tab-title">
 					<li>我的桌面</li>
@@ -290,7 +310,7 @@
 			  base: './static/js/'
 			  ,version: '101100111'
 			}).use('admin');
-			layui.use(['jquery','admin'], function(){
+			layui.use(['jquery','admin','bodyTab'], function(){
 				var $ = layui.jquery;
 				$(function(){
 					var login = JSON.parse(localStorage.getItem("login"));
@@ -347,5 +367,5 @@
         <li data-type="other">关闭其它</li>
         <li data-type="all">关闭所有</li>
     </ul>
-
+	<script type="text/javascript" src="./static/js/leftNav.js"></script>
 </html>

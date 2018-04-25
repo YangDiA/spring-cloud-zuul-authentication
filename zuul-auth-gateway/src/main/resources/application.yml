@@ -32,7 +32,7 @@ zuul:
       path: /**
     personal-api:
       serviceId: personal-api
-      path: /**
+      path: /personal/**
     token-generator:
       serviceId: token-manager
       path: /**
@@ -42,7 +42,7 @@ zuul:
 jwt:
   header: Authorization
   secret: mySecret
-  expiration: 60 #604800
+  expiration: 604800
   route:
     authentication:
       path: auth

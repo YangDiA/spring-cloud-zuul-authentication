@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统SpringBoot LayUI</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../../../static/css/font.css">
+	<link rel="stylesheet" href="../../../static/css/weadmin.css">
+	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
+
+	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+	<!--[if lt IE 9]>
+	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+    <link rel="stylesheet" href="../../../static/plugin/ztree/css/metroStyle/metroStyle.css" type="text/css">
+</head>
+<body class="childrenBody">
+	<form id="form1" class="layui-form form"  action="/role/doAuth" method="post">
+		<input type="hidden" name="roleId" value="${role.id}" />
+		<input type="hidden" id="authId" name="menuIds" value="" />
+		<div class="layui-form-item">
+			<label class="layui-form-label">功能权限</label>
+			<div class="layui-input-block">
+				<ul id="treeDemo" class="ztree"></ul>
+			</div>
+		</div>
+		<hr />
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<input type="hidden" name="dataId" id="dataId" value="" />
+				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+		    </div>
+		</div>
+	</form>
+
+	<script type="text/javascript" src="../../../static/plugin/ztree/jquery-1.4.4.min.js"></script>
+	<script type="text/javascript" src="../../../static/plugin/ztree/jquery.ztree.all.min.js"></script>
+
+	 <script type="text/javascript">
+	 	//绑定表单数据
+	 	function bindCheck(){
+	 		var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+    		var nodes = treeObj.getCheckedNodes(true);
+    		$("#authId").empty();
+    		var arr = [];
+    		$.each(nodes,function(i,n){
+    			arr.push(n.id);
+    		});
+    		$("#authId").val(arr.join());
+	 	}
+	 	
+        var setting = {
+            view: {
+                selectedMulti: false
+            },
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            },
+            edit: {
+                enable: false
+            },
+            callback:{
+            	onCheck:function(treeId,treeNode){
+            		bindCheck();
+                }
+            }
+        };
+
+        $(document).ready(function(){
+
+            var menuList = [{"isParent":0,"name":"创建菜单","menuId":"3f26102ef0e04c3c9328cb97067cc5fa","checked":1,"pId":"4","id":"3f26102ef0e04c3c9328cb97067cc5fa","open":0},{"isParent":0,"name":"删除菜单","menuId":"0c9b5fc8b44b41d1871a8fc8300247ec","checked":1,"pId":"4","id":"0c9b5fc8b44b41d1871a8fc8300247ec","open":0},{"isParent":1,"name":"SPU管理","menuId":"3b18f3d776c74266b63c2542825aa3c3","checked":1,"pId":"be659f4c66fb4db989f654eb408d86e1","id":"3b18f3d776c74266b63c2542825aa3c3","open":0},{"isParent":0,"name":"批量删除角色","menuId":"f899f3d3baec4571b1c786717f9906fd","checked":1,"pId":"3","id":"f899f3d3baec4571b1c786717f9906fd","open":0},{"isParent":1,"name":"菜单管理","menuId":"4","checked":1,"pId":"1","id":"4","open":0},{"isParent":0,"name":"查看用户列表","menuId":"d2bc30feb5474a1bb7e02d48d39a3f8a","checked":1,"pId":"2","id":"d2bc30feb5474a1bb7e02d48d39a3f8a","open":0},{"isParent":0,"name":"新增角色","menuId":"60dda993d87647f5989c15f14f866df9","checked":1,"pId":"3","id":"60dda993d87647f5989c15f14f866df9","open":0},{"isParent":0,"name":"删除角色","menuId":"b4e7232189b14cf3ba160cf7b0d3bf37","checked":1,"pId":"3","id":"b4e7232189b14cf3ba160cf7b0d3bf37","open":0},{"isParent":0,"name":"新增用户","menuId":"a73802e513cc4465883530ec8074abbb","checked":1,"pId":"2","id":"a73802e513cc4465883530ec8074abbb","open":0},{"isParent":0,"name":"角色授权","menuId":"a5ebf29168234406939856bc6890c86b","checked":1,"pId":"3","id":"a5ebf29168234406939856bc6890c86b","open":0},{"isParent":1,"name":"角色管理","menuId":"3","checked":1,"pId":"1","id":"3","open":0},{"isParent":0,"name":"编辑菜单","menuId":"dc5f478d98ed4297a8ae638fe90df050","checked":1,"pId":"4","id":"dc5f478d98ed4297a8ae638fe90df050","open":0},{"isParent":1,"name":"用户管理","menuId":"2","checked":1,"pId":"1","id":"2","open":0},{"isParent":0,"name":"编辑用户","menuId":"4253190001c1480fb0d631d64d150535","checked":1,"pId":"2","id":"4253190001c1480fb0d631d64d150535","open":0},{"isParent":0,"name":"删除用户","menuId":"649b484b58414d91aefa5a26143e6557","checked":1,"pId":"2","id":"649b484b58414d91aefa5a26143e6557","open":0},{"isParent":0,"name":"编辑角色","menuId":"686630c7cb624cc786dcdc9958971a6b","checked":1,"pId":"3","id":"686630c7cb624cc786dcdc9958971a6b","open":0},{"isParent":0,"name":"查看角色列表","menuId":"1db9105008404a3485b6fac30dba3c0e","checked":1,"pId":"3","id":"1db9105008404a3485b6fac30dba3c0e","open":0},{"isParent":1,"name":"系统管理","menuId":"1","checked":1,"pId":"0","id":"1","open":1},{"isParent":1,"name":"商品管理","menuId":"be659f4c66fb4db989f654eb408d86e1","checked":1,"pId":"0","id":"be659f4c66fb4db989f654eb408d86e1","open":1},{"isParent":0,"name":"查看菜单列表","menuId":"488ef1eff57b4827acade7c0744278ce","checked":1,"pId":"4","id":"488ef1eff57b4827acade7c0744278ce","open":0},{"isParent":0,"name":"更新角色状态","checked":0,"pId":"3","id":"3987d383a7a74b45902e14e027d9b56e","open":0},{"isParent":0,"name":"监控列表","checked":0,"pId":"f5a20c82110b4a3ea9e30ca01a038680","id":"42dd5ae31e3a43b3a197440e8ec19a94","open":0},{"isParent":1,"name":"日志管理","checked":0,"pId":"1","id":"809db56d93e848e8b43396e125803884","open":0},{"isParent":0,"name":"更新用户状态","checked":0,"pId":"2","id":"9c51e94cef99435780fb72bdb923a2ab","open":0},{"isParent":0,"name":"日志列表","checked":0,"pId":"809db56d93e848e8b43396e125803884","id":"c0c304be5c294114b5bc0d0c3acef992","open":0},{"isParent":1,"name":"系统监控","checked":0,"pId":"1","id":"f5a20c82110b4a3ea9e30ca01a038680","open":0}];
+            $.fn.zTree.init($("#treeDemo"), setting,menuList);
+            bindCheck();
+        });
+
+    </script>
+</body>
+</html>
