@@ -1,74 +1,198 @@
 {
 	"status" : 200,
-	"data":[{
-			"title" : "后台首页",
-			"icon" : "icon-computer",
-			"href" : "/pages/main.html",
-			"spread" : false
-		},{
-			"title" : "系统管理",
-			"icon" : "icon-settings",
+	"data":[
+		{
+			"title" : "会员管理",
+			"icon" : "&#xe6b8;",
 			"href" : "",
 			"spread" : false,
 			"children" : [
 				{
-					"title" : "用户管理",
-					"icon" : "icon-yonghu",
-					"href" : "/user/list",
+					"title" : "会员列表",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/member/list.html",
+					"spread" : false
+				},
+				{
+					"title" : "会员删除",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/member/del.html",
+					"spread" : false
+
+				},
+				{
+					"title" : "会员管理",
+					"icon" : "&#xe70b;",
+					"href" : "",
+					"spread" : false,
+					"children" : [
+						{
+							"title" : "输入框操作",
+							"icon" : "&#xe6a7;",
+							"href" : "./pages/member/addInput.html",
+							"spread" : false
+						},
+						{
+							"title" : "会员删除",
+							"icon" : "&#xe6a7;",
+							"href" : "./pages/404.html",
+							"spread" : false
+						},
+						{
+							"title" : "等级管理",
+							"icon" : "&#xe6a7;",
+							"href" : "./pages/404.html",
+							"spread" : false
+						}
+					]
+				}
+			]
+		},
+		{
+			"title" : "文章管理",
+			"icon" : "&#xe705;",
+			"href" : "",
+			"spread" : false,
+			"children" : [
+				{
+					"title" : "文章列表",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/article/list.html",
+					"spread" : false
+				},
+				{
+					"title" : "分类管理",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/article/category.html",
+					"spread" : false
+				}
+			]
+		},
+		{
+			"title" : "订单管理",
+			"icon" : "&#xe723;",
+			"href" : "",
+			"spread" : false,
+			"children" : [
+				{
+					"title" : "订单列表1",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/order/list.html",
+					"spread" : false
+				}
+			]
+		},
+		{
+			"title" : "管理员管理",
+			"icon" : "&#xe726;",
+			"href" : "",
+			"spread" : false,
+			"children" : [
+				{
+					"title" : "管理员列表",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/list.html",
 					"spread" : false
 				},
 				{
 					"title" : "角色管理",
-					"icon" : "icon-jiaose",
-					"href" : "/role/list",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/role.html",
+					"spread" : false
+				},
+				{
+					"title" : "用户管理",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/user/list.html",
 					"spread" : false
 				},
 				{
 					"title" : "菜单管理",
-					"icon" : "icon-menu",
-					"href" : "/menu/list",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/menu/list.html",
+					"spread" : false
+				},
+				{
+					"title" : "角色菜单",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/role/list.html",
+					"spread" : false
+				},
+				{
+					"title" : "权限分类",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/cate.html",
+					"spread" : false
+				},
+				{
+					"title" : "权限管理",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/admin/rule.html",
 					"spread" : false
 				}
 			]
-		},{
-			"title" : "文章列表",
-			"icon" : "icon-text",
-			"href" : "/pages/news/newsList.html",
-			"spread" : false
-		},{
-			"title" : "友情链接",
-			"icon" : "icon-text",
-			"href" : "/pages/links/linksList.html",
-			"spread" : false
-		},{
-			"title" : "404页面",
-			"icon" : "&#xe61c;",
-			"href" : "/pages/404.html",
-			"spread" : false
-		},{
-			"title" : "系统基本参数",
-			"icon" : "&#xe631;",
-			"href" : "/pages/systemParameter/systemParameter.html",
-			"spread" : false
-		},{
-			"title" : "二级菜单演示",
-			"icon" : "&#xe61c;",
+		},
+		{
+			"title" : "系统统计",
+			"icon" : "&#xe6ce;",
 			"href" : "",
 			"spread" : false,
 			"children" : [
 				{
-					"title" : "二级菜单1",
-					"icon" : "&#xe631;",
-					"href" : "",
+					"title" : "拆线图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts1.html",
 					"spread" : false
 				},
 				{
-					"title" : "二级菜单2",
-					"icon" : "&#xe631;",
-					"href" : "",
+					"title" : "柱状图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts2.html",
+					"spread" : false
+				},
+				{
+					"title" : "地图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts3.html",
+					"spread" : false
+				},
+				{
+					"title" : "饼图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts4.html",
+					"spread" : false
+				},
+				{
+					"title" : "雷达图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts5.html",
+					"spread" : false
+				},
+				{
+					"title" : "k线图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts6.html",
+					"spread" : false
+				},
+				{
+					"title" : "热力图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts7.html",
+					"spread" : false
+				},
+				{
+					"title" : "仪表图",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts8.html",
+					"spread" : false
+				},
+				{
+					"title" : "地图DIY实例",
+					"icon" : "&#xe6a7;",
+					"href" : "./pages/echarts/echarts9.html",
 					"spread" : false
 				}
 			]
 		}]
-	
+
 }

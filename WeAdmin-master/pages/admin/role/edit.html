@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../../../static/css/weadmin.css">
 	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
 
+
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -17,27 +18,31 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
-	<form id="form1" class="layui-form form"  action="/role/doEdit" method="post">
-		<input type="hidden" name="id" value="${role.id}" />
-		<div class="layui-form-item">
-			<label class="layui-form-label">角色名称</label>
-			<div class="layui-input-block">
-				<input type="text" class="layui-input" value="${role.roleName}"  name="roleName"  jq-verify="required" placeholder="请输入角色名称">
+
+		<form id="form1" class="layui-form form"  action="/role/doEdit" method="post"  id="bind">
+			<input type="hidden" name="id" value="${role.id}" />
+			<div class="layui-form-item">
+				<label class="layui-form-label">角色名称</label>
+				<div class="layui-input-block">
+					<input type="text" class="layui-input"  laybind="roleName"  name="roleName"  jq-verify="required" placeholder="请输入角色名称">
+				</div>
 			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">角色描述</label>
-			<div class="layui-input-block">
-				<textarea placeholder="请输入角色描述" name="roleDesc" class="layui-textarea">${role.roleDesc}</textarea>
+			<div class="layui-form-item">
+				<label class="layui-form-label">角色描述</label>
+				<div class="layui-input-block">
+					<textarea placeholder="请输入角色描述" name="roleDesc" class="layui-textarea">${role.roleDesc}</textarea>
+				</div>
 			</div>
-		</div>
-		<div class="layui-form-item">
-			<div class="layui-input-block">
-				<input type="hidden" name="dataId" id="dataId" value="" />
-				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
-				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
-		    </div>
-		</div>
-	</form>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<input type="hidden" name="dataId" id="dataId" value="" />
+					<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+					<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+				</div>
+			</div>
+		</form>
 </body>
+<script src="../../../lib/layui2.2.6/lay/modules/jquery.js" charset="utf-8"></script>
+<script src="../../../lib/laybind/laybind.js" type="text/javascript" charset="utf-8"></script>
+<script src="edit.js" type="text/javascript" charset="utf-8"></script>
 </html>

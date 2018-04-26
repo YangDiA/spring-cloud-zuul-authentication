@@ -11,7 +11,9 @@
 		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="./static/css/font.css">
 		<link rel="stylesheet" href="./static/css/weadmin.css">
+		<script type="text/javascript" src="./static/js/leftNav.js"></script>
 		<script type="text/javascript" src="./lib/layui2.2.6/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./lib/layui2.2.6/lay/modules/jquery.js" charset="utf-8"></script>
 
 	</head>
 
@@ -68,7 +70,7 @@
 		<!-- 左侧菜单开始 -->
 		<div class="left-nav">
 			<div id="side-nav">
-				<ul id="nav">
+				<!--<ul id="nav">
 					<li>
 						<a href="javascript:;">
 							<i class="iconfont">&#xe6b8;</i>
@@ -269,7 +271,8 @@
 							</li>
 						</ul>
 					</li>
-				</ul>
+				</ul>-->
+				<ul id='nav'></ul>
 				<!--动态加载菜单-->
 				<!--<div class="navBar "></div>-->
 			</div>
@@ -355,6 +358,8 @@
 						window.location.href='./login.html';
 						return false;
 					}
+
+
 				});
 			});
 
@@ -367,5 +372,5 @@
         <li data-type="other">关闭其它</li>
         <li data-type="all">关闭所有</li>
     </ul>
-	<script type="text/javascript" src="./static/js/leftNav.js"></script>
+
 </html>
