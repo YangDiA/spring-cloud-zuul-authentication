@@ -1,9 +1,4 @@
-/*
-	@Author: 请叫我马哥
-	@Time: 2017-04
-	@Tittle: tab
-	@Description: 点击对应按钮添加新窗口
-*/
+
 var tabFilter,menu=[],liIndex,curNav,delMenu;
 layui.define(["element","jquery","layer"],function(exports){
 

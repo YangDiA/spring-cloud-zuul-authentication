@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../../../static/css/font.css">
 	<link rel="stylesheet" href="../../../static/css/weadmin.css">
 	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
-
+	<script src="edit.js" type="text/javascript" charset="utf-8"></script>
 
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
@@ -18,8 +18,14 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
+<div id="bind" >
+	<p>输入名称 <input type="text" laybind="name"> 名称 <span laybind="name"></span></p>
+	<p>输入手机 <input type="text" laybind="mobile"> 手机 <span laybind="mobile"></span></p>
+	<p>输入地址 <input type="text" laybind="address"> 地址 <span laybind="address"></span></p>
 
-		<form id="form1" class="layui-form form"  action="/role/doEdit" method="post"  id="bind">
+	<button id = "tijiao">提交</button>
+</div>
+		<form id="form1" class="layui-form form"  action="/role/doEdit" method="post" >
 			<input type="hidden" name="id" value="${role.id}" />
 			<div class="layui-form-item">
 				<label class="layui-form-label">角色名称</label>
@@ -42,7 +48,5 @@
 			</div>
 		</form>
 </body>
-<script src="../../../lib/layui2.2.6/lay/modules/jquery.js" charset="utf-8"></script>
-<script src="../../../lib/laybind/laybind.js" type="text/javascript" charset="utf-8"></script>
-<script src="edit.js" type="text/javascript" charset="utf-8"></script>
+
 </html>
