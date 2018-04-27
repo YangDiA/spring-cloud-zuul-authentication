@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.liumapp.auth.zuul</groupId>
+	<groupId>com.linrry.auth.zuul</groupId>
 	<artifactId>spring-cloud-zuul-authentication</artifactId>
 	<version>v1.0.0</version>
 	<packaging>pom</packaging>
@@ -13,14 +13,7 @@
         <version>1.5.6.RELEASE</version>
     </parent>
 
-	<developers>
-		<developer>
-			<id>liumapp</id>
-			<name>liumapp</name>
-			<email>liumapp.com@gmail.com</email>
-			<url>http://www.liumapp.com</url>
-		</developer>
-	</developers>
+
 
 	<properties>
 		<spring-cloud.version>Dalston.SR2</spring-cloud.version>

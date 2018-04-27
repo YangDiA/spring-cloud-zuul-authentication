@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.liumapp.auth.zuul</groupId>
+    <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
     <version>v1.0.0</version>
   </parent>
 
-  <groupId>com.liumapp.auth.zuul.eureka</groupId>
+  <groupId>com.linrry.auth.zuul.eureka</groupId>
   <artifactId>zuul-auth-eureka</artifactId>
   <version>v1.0.0</version>
   <packaging>jar</packaging>

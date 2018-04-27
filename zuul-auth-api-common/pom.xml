@@ -3,12 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.liumapp.auth.zuul</groupId>
+    <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
     <version>v1.0.0</version>
   </parent>
 
-  <groupId>com.liumapp.auth.zuul.common.api</groupId>
+  <groupId>com.linrry.auth.zuul.common.api</groupId>
   <artifactId>zuul-auth-api-common</artifactId>
   <version>v1.0.0</version>
   <packaging>jar</packaging>
