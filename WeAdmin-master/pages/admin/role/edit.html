@@ -18,17 +18,11 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
-<div id="bind" >
-	<p>输入名称 <input type="text" laybind="name"> 名称 <span laybind="name"></span></p>
-	<p>输入手机 <input type="text" laybind="mobile"> 手机 <span laybind="mobile"></span></p>
-	<p>输入地址 <input type="text" laybind="address"> 地址 <span laybind="address"></span></p>
 
-	<button id = "tijiao">提交</button>
-</div>
-		<form id="form1" class="layui-form form"  action="/role/doEdit" method="post" >
+		<div  class="layui-form form"  action="/role/doEdit" method="post" id="bind">
 			<input type="hidden" name="id" value="${role.id}" />
 			<div class="layui-form-item">
-				<label class="layui-form-label">角色名称</label>
+				<label class="layui-form-label">角色名称 </label>
 				<div class="layui-input-block">
 					<input type="text" class="layui-input"  laybind="roleName"  name="roleName"  jq-verify="required" placeholder="请输入角色名称">
 				</div>
@@ -36,17 +30,17 @@
 			<div class="layui-form-item">
 				<label class="layui-form-label">角色描述</label>
 				<div class="layui-input-block">
-					<textarea placeholder="请输入角色描述" name="roleDesc" class="layui-textarea">${role.roleDesc}</textarea>
+					<textarea placeholder="请输入角色描述" laybind="roleDesc" name="roleDesc" class="layui-textarea"></textarea>
 				</div>
 			</div>
 			<div class="layui-form-item">
 				<div class="layui-input-block">
 					<input type="hidden" name="dataId" id="dataId" value="" />
-					<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
-					<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+					<button class="layui-btn" jq-submit data-type="submit" ><i class="iconfont icon-submit"></i> 立即提交</button>
+					<!--<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>-->
 				</div>
 			</div>
-		</form>
+		</div>
 </body>
 
 </html>

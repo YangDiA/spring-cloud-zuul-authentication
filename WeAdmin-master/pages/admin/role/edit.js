@@ -11,13 +11,23 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate'], function() {
         laybind= layui.laybind,
         laydate = layui.laydate;
 
-    var bind =  laybinddata($('#bind'),{data:{name:"ddd"}});
-    $('#tijiao').on('click', function() {
-        var data = bind.getData();
-        console.log(data)
+    var editData={roleName:"ddd",roleDesc:""};
+
+    editData.roleName="dfa2r";
+    var bind =new laybind.laybinddata($('#bind'),{data:editData});
+
+    var active = {
+        submit: function() {
+            var data = bind.getData();
+            console.log(data);
+            console.log(editData);
+        }
+    };
+
+    $('.layui-input-block .layui-btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
     });
-
-
 
 
 
