@@ -36,6 +36,9 @@ zuul:
     token-generator:
       serviceId: token-manager
       path: /**
+    sys-api:
+      serviceId: sys-api
+      path: /sys/**
   ignoredHeaders: Authorization
 
 

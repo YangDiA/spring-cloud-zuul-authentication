@@ -115,7 +115,11 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
         method:"post",
         where:{"Authorization":localStorage.getItem('Authorization')},
         headers: {Authorization: localStorage.getItem('Authorization')},
-		cols: [
+        response: {
+
+            statusCode: 200 //成功的状态码，默认：0
+        },
+        cols: [
 			[{
 				type: 'checkbox'
 			}, {

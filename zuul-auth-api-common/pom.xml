@@ -15,8 +15,36 @@
 
   <name>zuul-auth-api-common</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
+    <mybatisplus.version>2.1.8</mybatisplus.version>
+    <mysql.version>5.1.32</mysql.version>
+    <HikariCP.version>2.4.13</HikariCP.version>
+    <fastjson.version>1.2.39</fastjson.version>
+  </properties>
 
   <dependencies>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+
+    <!-- mybatis-plus begin -->
+    <dependency>
+      <groupId>com.baomidou</groupId>
+      <artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>${mybatis-plus-boot-starter.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <!-- mybatis-plus end -->
 
 
   </dependencies>

@@ -24,8 +24,25 @@ public class Result implements Serializable {
 
     public static Result ok(){
 
-        return new Result().setMsg("success").setCode("0");
+        return new Result().setMsg("success").setCode("200");
 
+    }
+    public static Result ok(String msg){
+        Result rest = ok();
+        rest.setMsg(msg);
+        return rest;
+    }
+    public static Result okData(Object data){
+        Result rest = ok();
+        rest.setData(data);
+        return rest;
+    }
+
+    public static Result failure(String msg){
+        Result rest = new Result();
+        rest.setCode("500");
+        rest.setMsg(msg);
+        return rest;
     }
 
     public Result(String code, String msg) {

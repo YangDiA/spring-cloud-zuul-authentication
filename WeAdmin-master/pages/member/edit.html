@@ -102,8 +102,9 @@
 					$ = layui.jquery,
 					admin = layui.admin,
 					layer = layui.layer;
-
-				//自定义验证规则
+                var dataId = $('input[name="dataId"]').val();
+                console.log(dataId);
+                //自定义验证规则
 				form.verify({
 					nikename: function(value) {
 						if(value.length < 5) {

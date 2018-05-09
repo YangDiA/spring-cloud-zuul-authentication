@@ -17,6 +17,16 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
+<div class="weadmin-nav">
+			<span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">管理员管理</a>
+        <a>
+          <cite>角色菜单列表</cite></a>
+      </span>
+	<a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+		<i class="layui-icon" style="line-height:30px">&#x1002;</i></a>
+</div>
 	<blockquote class="layui-elem-quote news_search">
 		<form class="layui-form form" action="/role/page" method="get">
 		<div class="layui-inline">
@@ -43,10 +53,10 @@
 
 	<script type="text/html" id="operateTpl">
 
-		<a title="查看" onclick="WeAdminEdit('查看','./view.html','{{d.id}})', 600, 400)" href="javascript:;">
+		<a title="查看" onclick="WeAdminEdit('查看','./view.html','{{d.id}}', 600, 400)" href="javascript:;">
 			<i class="layui-icon">&#xe621;</i>
 		</a>
-		<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}})', 600, 400)" href="javascript:;">
+		<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}}', 600, 400)" href="javascript:;">
 			<i class="layui-icon">&#xe642;</i>
 		</a>
 		<a title="分配权限" onclick="WeAdminEdit('分配权限-{{d.roleName}}','./auth.html','{{d.id}}',600,400)" href="javascript:;">

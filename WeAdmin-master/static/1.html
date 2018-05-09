@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ttt
+<script type="text/javascript">
+
+    var data = {
+        "status" : 200,
+        "data":[{
+            "title" : "后台首页",
+            "icon" : "icon-computer",
+            "href" : "/pages/main.html",
+            "spread" : false
+        },{
+            "title" : "系统管理",
+            "icon" : "icon-settings",
+            "href" : "",
+            "spread" : false,
+            "children" : [
+                {
+                    "title" : "用户管理",
+                    "icon" : "icon-yonghu",
+                    "href" : "/user/list",
+                    "spread" : false
+                },
+                {
+                    "title" : "角色管理",
+                    "icon" : "icon-jiaose",
+                    "href" : "/role/list",
+                    "spread" : false
+                },
+                {
+                    "title" : "菜单管理",
+                    "icon" : "icon-menu",
+                    "href" : "/menu/list",
+                    "spread" : false
+                }
+            ]
+        },{
+            "title" : "文章列表",
+            "icon" : "icon-text",
+            "href" : "/pages/news/newsList.html",
+            "spread" : false
+        },{
+            "title" : "友情链接",
+            "icon" : "icon-text",
+            "href" : "/pages/links/linksList.html",
+            "spread" : false
+        },{
+            "title" : "404页面",
+            "icon" : "&#xe61c;",
+            "href" : "/pages/404.html",
+            "spread" : false
+        },{
+            "title" : "系统基本参数",
+            "icon" : "&#xe631;",
+            "href" : "/pages/systemParameter/systemParameter.html",
+            "spread" : false
+        },{
+            "title" : "二级菜单演示",
+            "icon" : "&#xe61c;",
+            "href" : "",
+            "spread" : false,
+            "children" : [
+                {
+                    "title" : "二级菜单1",
+                    "icon" : "&#xe631;",
+                    "href" : "",
+                    "spread" : false
+                },
+                {
+                    "title" : "二级菜单2",
+                    "icon" : "&#xe631;",
+                    "href" : "",
+                    "spread" : false
+                }
+            ]
+        }]
+
+    };
+    navBar(data.data);
+    function navBar(data){
+        console.log(data.length);
+        var ulHtml = '<ul class="layui-nav layui-nav-tree">';
+        for(var i=0;i<data.length;i++){
+            if(data[i].spread){
+                ulHtml += '<li class="layui-nav-item layui-nav-itemed">';
+            }else{
+                ulHtml += '<li class="layui-nav-item">';
+            }
+            if(data[i].children != undefined && data[i].children.length > 0){
+                ulHtml += '<a href="javascript:;">';
+                if(data[i].icon != undefined && data[i].icon != ''){
+                    if(data[i].icon.indexOf("icon-") != -1){
+                        ulHtml += '<i class="iconfont '+data[i].icon+'" data-icon="'+data[i].icon+'"></i>';
+                    }else{
+                        ulHtml += '<i class="layui-icon" data-icon="'+data[i].icon+'">'+data[i].icon+'</i>';
+                    }
+                }
+                ulHtml += '<cite>'+data[i].title+'</cite>';
+                ulHtml += '<span class="layui-nav-more"></span>';
+                ulHtml += '</a>'
+                ulHtml += '<dl class="layui-nav-child">';
+                for(var j=0;j<data[i].children.length;j++){
+                    ulHtml += '<dd><a href="javascript:;" data-url="'+data[i].children[j].href+'">';
+                    if(data[i].children[j].icon != undefined && data[i].children[j].icon != ''){
+                        if(data[i].children[j].icon.indexOf("icon-") != -1){
+                            ulHtml += '<i class="iconfont '+data[i].children[j].icon+'" data-icon="'+data[i].children[j].icon+'"></i>';
+                        }else{
+                            ulHtml += '<i class="layui-icon" data-icon="'+data[i].children[j].icon+'">'+data[i].children[j].icon+'</i>';
+                        }
+                    }
+                    ulHtml += '<cite>'+data[i].children[j].title+'</cite></a></dd>';
+                }
+                ulHtml += "</dl>"
+            }else{
+                ulHtml += '<a href="javascript:;" data-url="'+data[i].href+'">';
+                if(data[i].icon != undefined && data[i].icon != ''){
+                    if(data[i].icon.indexOf("icon-") != -1){
+                        ulHtml += '<i class="iconfont '+data[i].icon+'" data-icon="'+data[i].icon+'"></i>';
+                    }else{
+                        ulHtml += '<i class="layui-icon" data-icon="'+data[i].icon+'">'+data[i].icon+'</i>';
+                    }
+                }
+                ulHtml += '<cite>'+data[i].title+'</cite></a>';
+            }
+            ulHtml += '</li>'
+        }
+        ulHtml += '</ul>';
+        console.log(ulHtml);
+        return ulHtml;
+    }
+
+</script>
+
+</body>
+</html>

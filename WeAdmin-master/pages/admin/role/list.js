@@ -41,11 +41,14 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 	table.render({
 		elem: '#list',
 		cellMinWidth: 80,
-		/*url:"http://localhost/personal-api/personal/list",
+		url:"http://localhost/sys-api/sys/role/page",
         method:"post",
-        where:{"Authorization":localStorage.getItem('Authorization')},
-        headers: {Authorization: localStorage.getItem('Authorization')},*/
-		cols: [
+        where:{"roleName":""},
+        headers: {Authorization: localStorage.getItem('Authorization')},
+        response: {
+            statusCode: 200 //成功的状态码，默认：0
+        },
+        cols: [
 			[{
 				type: 'checkbox'
 			}, {
