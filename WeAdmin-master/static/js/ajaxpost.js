@@ -8,7 +8,12 @@ layui.define(['jquery'], function(exports){
                 type: "post",
                 dataType: dataType,
                 data: data,
-                success: callback
+                success: callback,
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    layer.msg('请求后端失败，请联系管理',function(){
+
+                    });
+                }
             });
         }
     };
