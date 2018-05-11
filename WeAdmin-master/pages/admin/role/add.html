@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="../../../static/css/font.css">
 	<link rel="stylesheet" href="../../../static/css/weadmin.css">
 	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
+	<script src="add.js" type="text/javascript" charset="utf-8"></script>
 
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
@@ -17,7 +18,7 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
-	<form class="layui-form form" id="form1" action="/role/doAdd" method="post">
+	<form class="layui-form form" id="form1">
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色名称</label>
 			<div class="layui-input-block">
@@ -32,7 +33,7 @@
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
+				<button class="layui-btn" lay-filter="add" lay-submit="">确定</button>
 				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
 		    </div>
 		</div>

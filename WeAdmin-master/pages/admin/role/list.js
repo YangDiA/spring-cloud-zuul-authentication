@@ -1,12 +1,15 @@
 layui.extend({
-	admin: '{/}../../../static/js/admin'
+	admin: '{/}../../../static/js/admin',
+    ajaxpost:'{/}../../../static/js/ajaxpost'
 });
 
-layui.use(['table', 'jquery', 'admin','laydate'], function() {
+layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 	var table = layui.table,
 		$ = layui.jquery,
 		admin = layui.admin,
-		laydate = layui.laydate;
+		laydate = layui.laydate,
+        ajaxpost = layui.ajaxpost;
+
 		laydate.render({
 			elem: '#start' //指定元素
 		});
@@ -19,31 +22,12 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 
 
 
-	var  tabledata = [ {
-        "id" : "2a9b728a431246b08f853c2529e6ba84",
-        "roleName" : "测试角色",
-        "roleDesc" : "测试",
-        "roleState" : 0,
-        "createTime" : "2017-02-28 15:15:41"
-    }, {
-        "id" : "3bd9f9e5fa8a4e0587a78cf697e4a9ce",
-        "roleName" : "只读角色",
-        "roleDesc" : "只读角色",
-        "roleState" : 1,
-        "createTime" : "2017-07-06 14:35:37"
-    }, {
-        "id" : "737933bffef640329a4f864c4e2746ba",
-        "roleName" : "超级管理员",
-        "roleDesc" : "超级管理员",
-        "roleState" : 1,
-        "createTime" : "2016-12-14 10:22:34"
-    } ];
+
 	table.render({
 		elem: '#list',
 		cellMinWidth: 80,
 		url:"http://localhost/sys-api/sys/role/page",
         method:"post",
-        where:{"roleName":""},
         headers: {Authorization: localStorage.getItem('Authorization')},
         response: {
             statusCode: 200 //成功的状态码，默认：0
@@ -65,24 +49,52 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 				field: 'id',title: '操作',toolbar: '#operateTpl',unresize: true,
 			}]
 		],
-		data: tabledata,
+		/*data: tabledata,*/
 		event: true,
 		page: true
 	});
+
+    $('.weadmin-block .layui-btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+    $('.we-search .layui-btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
 	var active = {
 		getCheckData: function() { //获取选中数据
 			var checkStatus = table.checkStatus('list'),
 				data = checkStatus.data;
-			//console.log(data);
+
 			//layer.alert(JSON.stringify(data));
 			if(data.length > 0) {
-				layer.confirm('确认要删除吗？' + JSON.stringify(data), function(index) {
-					layer.msg('删除成功', {
-						icon: 1
-					});
+				var ids ="";
+				for(var i=0;i<data.length;i++){
+                    ids += data[i].id+",";
+				}
+
+				layer.confirm('确认要删除吗？删除后不能找回', function(index) {
+                    //console.log(ids.substring(0,ids.length-1));
 					//找到所有被选中的，发异步进行删除
-					$(".layui-table-body .layui-form-checked").parents('tr').remove();
-				});
+                    ajaxpost.ajax("http://localhost/sys-api/sys/role/delete",null, {id:ids.substring(0,ids.length-1)},function (res) {
+                        if(res.code=="200"){
+
+                            layer.msg('删除成功', {
+                                icon: 1
+                            });
+
+                            location.replace(location.href);
+                           // $(".layui-table-body .layui-form-checked").parents('tr').remove();
+                        }else{
+                            layer.msg(res.msg,function(){
+                            });
+                        }
+                    })
+
+
+                });
 			} else {
 				layer.msg("请先选择需要删除的内容！");
 			}
@@ -91,13 +103,11 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 
 
         Reload: function(){
-            var start = $('#start');
+            var roleName = $('#roleNameSearch');
             table.reload('list', {
                 where: {
-                	token:localStorage.getItem('token'),
-                    start: start.val(),
-					end:$('#end').val(),
-                    keyword:$('#keyword').val()
+
+                    roleName:$('#roleNameSearch').val()
 
                 },
                 page: {
@@ -112,25 +122,31 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 
 	/*用户-删除*/
 	window.del = function(obj, id) {
-		layer.confirm('确认要删除吗？', function(index) {
+
+		console.log(id);
+		layer.confirm('确认要删除吗？删除后不能找回', function(index) {
 			//发异步删除数据
-			$(obj).parents("tr").remove();
-			layer.msg('已删除!', {
-				icon: 1,
-				time: 1000
-			});
+
+            //找到所有被选中的，发异步进行删除
+            ajaxpost.ajax("http://localhost/sys-api/sys/role/delete",null, {id:id},function (res) {
+                if(res.code=="200"){
+
+                    layer.msg('删除成功', {
+                        icon: 1
+                    });
+
+                    location.replace(location.href);
+                    // $(".layui-table-body .layui-form-checked").parents('tr').remove();
+                }else{
+                    layer.msg(res.msg,function(){
+                    });
+                }
+            })
+
+
 		});
 	}
 
 });
 
-function delAll(argument) {
-	var data = tableCheck.getData();
-	layer.confirm('确认要删除吗？' + data, function(index) {
-		//捉到所有被选中的，发异步进行删除
-		layer.msg('删除成功', {
-			icon: 1
-		});
-		$(".layui-form-checked").not('.header').parents('tr').remove();
-	});
-}
+

@@ -27,22 +27,24 @@
 	<a class="layui-btn layui-btn-sm" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
 		<i class="layui-icon" style="line-height:30px">&#x1002;</i></a>
 </div>
-	<blockquote class="layui-elem-quote news_search">
-		<form class="layui-form form" action="/role/page" method="get">
-		<div class="layui-inline">
-			<a class="layui-btn modal-iframe"  data-params='{"content": "/role/add", "title": "添加角色","full":false,"area":"600px,350px"}'>新增</a>
+
+<div class="weadmin-body">
+	<div class="layui-row">
+		<div class="layui-form layui-col-md12 we-search">
+			搜索：
+			<div class="layui-input-inline">
+				<input type="text" value="" name="roleNameSearch" id="roleNameSearch" placeholder="角色名称" class="layui-input search_input">
+			</div>
+			<button class="layui-btn" data-type="Reload"  ><i class="layui-icon">&#xe615;</i></button>
 		</div>
-		<div class="layui-inline">
-			<a class="layui-btn layui-btn-danger batchDel ajax-all"  data-name="id" data-params='{"url": "/role/delete","data":"","confirm":"true","complete":"reloadTab"}'>批量删除</a>
-		</div>
-		<div class="layui-inline">
-		    <div class="layui-input-inline">
-		    	<input type="text" value="" name="keyword" placeholder="角色名称" class="layui-input search_input">
-		    </div>
-		    <button lay-submit class="layui-btn" lay-filter="search">查找</button>
-		</div>
-		</form>
-	</blockquote>
+	</div>
+
+	<div class="weadmin-block">
+		<button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
+		<button class="layui-btn" onclick="WeAdminShow('添加','./add.html',600,400)"><i class="layui-icon"></i>添加</button>
+
+	</div>
+
 	<div class="layui-form links_list">
 		<table class="layui-hide" id="list"></table>
 	</div>
@@ -62,9 +64,10 @@
 		<a title="分配权限" onclick="WeAdminEdit('分配权限-{{d.roleName}}','./auth.html','{{d.id}}',600,400)" href="javascript:;">
 			<i class="layui-icon">&#xe63c;</i>
 		</a>
-		<a title="删除" onclick="del(this,'要删除的id')" href="javascript:;">
+		<a title="删除" onclick="del(this,'{{d.id}}')" href="javascript:;">
 			<i class="layui-icon">&#xe640;</i>
 		</a>
 	</script>
+</div>
 </body>
 </html>

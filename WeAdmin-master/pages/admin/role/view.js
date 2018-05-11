@@ -33,35 +33,7 @@ layui.use(['table', 'jquery', 'admin','laydate','laytpl','ajaxpost'], function()
             });
         }
     })
-    /*$.ajax({
-        url: "http://localhost/sys-api/sys/role/selectById",
-        data: {id:dataId},
-        headers:{Authorization: localStorage.getItem('Authorization')},
-        type: "post",
-        success: function (res) {
-            console.log(res);
-            if(res.code=="200"){
-                data =res.data
-                var getTpl = demo.innerHTML
-                    ,view = document.getElementById('view');
-                laytpl(getTpl).render(data, function(html){
-                    view.innerHTML = html;
-                });
-            }else{
-                layer.msg(res.msg,function(){
-                });
-            }
 
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-        },
-        beforeSend: function () {
-
-        },
-        complete: function () {
-        }
-    });*/
 
 
 
