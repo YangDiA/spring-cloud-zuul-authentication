@@ -56,7 +56,7 @@
                       contentType:"application/json",
                       success: function (data) {
                           console.log(data);
-                          if(data.code=="0"){
+                          if(data.code=="200"){
                               layer.msg('登录成功',function(){
                                   localStorage.setItem('Authorization',"Bearer "+ data.data);
                                   location.href='./index.html'
