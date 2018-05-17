@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linrry.auth.zuul.sys.api.mapper.MenuMapper">
+
+    <!-- 开启二级缓存 -->
+  <!--  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
+
+    <select id="selectMenuByUid" resultType="java.util.HashMap">
+        SELECT
+        m.`id`,
+        m.`menuName` AS title,
+        m.icon,
+        m.`url` AS href,
+        FALSE AS spread
+        FROM `menu` m
+        WHERE m.`pid` = #{pid}
+        AND m.`id` IN (
+        SELECT  DISTINCT rm.`menuId` FROM user_role ur
+        LEFT JOIN role_menu rm ON ur.`roleId` = rm.`roleId`
+        WHERE ur.`userId` = #{uid}
+        )
+        ORDER BY sort ASC
+    </select>
+
+</mapper>
