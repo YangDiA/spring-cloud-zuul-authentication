@@ -16,7 +16,7 @@ layui.use(['form', 'jquery','layer','admin','ajaxpost'], function(){
         $('#add').attr('disabled', true);
 
         //发异步
-        ajaxpost.ajax("http://localhost/sys-api/sys/role/add",null, data.field,function (res) {
+        ajaxpost.ajax("/sys-api/sys/role/add",null, data.field,function (res) {
             if(res.code=="200"){
 
                 layer.msg("增加成功", {icon: 6,time:500},function () {

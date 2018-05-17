@@ -51,3 +51,27 @@ jwt:
       path: auth
       refresh: refresh
 
+
+
+hystrix:
+  threadpool:
+    default:
+      coreSize: 500
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false # 将 hystrix 的超时时间直接禁用掉，这样就没有超时的一说了，因为永远也不会超时了
+        isolation:
+          thread:
+            timeoutInMilliseconds: 80000
+
+ribbon:
+  ConnectTimeout: 60000  #250
+  ReadTimeout: 50000 #1000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextServer: 10
+  MaxAutoRetries: 0
+  okhttp:
+    enabled: true
+

@@ -20,7 +20,7 @@ layui.use(['table', 'jquery', 'admin','laydate','laytpl','ajaxpost'], function()
 
     }
     var dataId = $('input[name="dataId"]').val();
-    ajaxpost.ajax("http://localhost/sys-api/sys/role/selectById",null, {id:dataId},function (res) {
+    ajaxpost.ajax("/sys-api/sys/role/selectById",null, {id:dataId},function (res) {
         if(res.code=="200"){
             data =res.data
             var getTpl = demo.innerHTML

@@ -111,7 +111,7 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
 	table.render({
 		elem: '#articleList',
 		cellMinWidth: 80,
-		url:"http://localhost/personal-api/personal/list",
+		url:"/personal-api/personal/list",
         method:"post",
         where:{"Authorization":localStorage.getItem('Authorization')},
         headers: {Authorization: localStorage.getItem('Authorization')},

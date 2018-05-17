@@ -11,6 +11,9 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * <p>
  * 菜单表 前端控制器
@@ -54,10 +57,20 @@ public class MenuController extends CrudController<Menu,IMenuService> {
     public Result leftmenu(){
         Result result = Result.ok();
        // String uid = ((SysUser)request.getSession().getAttribute("session_user")).getId();
-       /* List<Map<String, Object>> list = sysMenuService.selectMenuByUid(uid,"0");
+        String uid= "1";
+        List<Map<String, Object>> list = menuService.selectMenuByUid(uid,"0");
         for(Map<String, Object> m : list){
-            m.put("children", sysMenuService.selectMenuByUid(uid,m.get("id").toString()));
-        }*/
+            List<Map<String, Object>> son = menuService.selectMenuByUid(uid,m.get("id").toString());
+
+            //三级菜单
+            for(Map<String, Object> s : son){
+                List<Map<String, Object>> grson = menuService.selectMenuByUid(uid,s.get("id").toString());
+                s.put("children",grson);
+            }
+            m.put("children",son);
+
+        }
+        result.setData(list);
         return result;
     }
 

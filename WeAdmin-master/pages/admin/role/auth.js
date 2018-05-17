@@ -23,7 +23,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             console.log($('#dataId').val());
             console.log($('#authId').val());
             //发异步
-            ajaxpost.ajax("http://localhost/sys-api/sys/role/addRoleMenu",null, {roleId:$('#dataId').val(),menuIds:$('#authId').val()},function (res) {
+            ajaxpost.ajax("/sys-api/sys/role/addRoleMenu",null, {roleId:$('#dataId').val(),menuIds:$('#authId').val()},function (res) {
                 if(res.code=="200"){
                     layer.alert("修改成功", {icon: 6},function () {
                         // 获得frame索引

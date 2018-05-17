@@ -17,7 +17,7 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
 
     var bind;
     var dataId = $('input[name="dataId"]').val();
-    ajaxpost.ajax("http://localhost/sys-api/sys/role/selectById",null, {id:dataId},function (res) {
+    ajaxpost.ajax("/sys-api/sys/role/selectById",null, {id:dataId},function (res) {
         if(res.code=="200"){
             editData =res.data
              bind =new laybind.laybinddata($('#bind'),{data:editData});
@@ -35,7 +35,7 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
             console.log(data);
             console.log(editData);
             //发异步
-            ajaxpost.ajax("http://localhost/sys-api/sys/role/update",null, {id:data.id,roleName:data.roleName, roleDesc:data.roleDesc},function (res) {
+            ajaxpost.ajax("/sys-api/sys/role/update",null, {id:data.id,roleName:data.roleName, roleDesc:data.roleDesc},function (res) {
                 if(res.code=="200"){
                     layer.alert("修改成功", {icon: 6},function () {
                         // 获得frame索引

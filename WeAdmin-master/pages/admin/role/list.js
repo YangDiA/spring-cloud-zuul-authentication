@@ -26,7 +26,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 	table.render({
 		elem: '#list',
 		cellMinWidth: 80,
-		url:"http://localhost/sys-api/sys/role/page",
+		url:"/sys-api/sys/role/page",
         method:"post",
         headers: {Authorization: localStorage.getItem('Authorization')},
         response: {
@@ -78,7 +78,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 				layer.confirm('确认要删除吗？删除后不能找回', function(index) {
                     //console.log(ids.substring(0,ids.length-1));
 					//找到所有被选中的，发异步进行删除
-                    ajaxpost.ajax("http://localhost/sys-api/sys/role/delete",null, {id:ids.substring(0,ids.length-1)},function (res) {
+                    ajaxpost.ajax("/sys-api/sys/role/delete",null, {id:ids.substring(0,ids.length-1)},function (res) {
                         if(res.code=="200"){
 
                             layer.msg('删除成功', {
@@ -128,7 +128,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 			//发异步删除数据
 
             //找到所有被选中的，发异步进行删除
-            ajaxpost.ajax("http://localhost/sys-api/sys/role/delete",null, {id:id},function (res) {
+            ajaxpost.ajax("/sys-api/sys/role/delete",null, {id:id},function (res) {
                 if(res.code=="200"){
 
                     layer.msg('删除成功', {

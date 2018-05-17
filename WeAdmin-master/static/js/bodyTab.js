@@ -21,8 +21,8 @@ layui.define(["element","jquery","layer"],function(exports){
 		var l = layer.load(1);
         $.ajax({
             type: "GET",
-            //url: "/menu/leftmenu",
-             url: "/admin/static/json/menu.json",
+            url: "/sys-api/sys/menu/leftmenu",
+             //url: "/admin/static/json/menu.json",
             dataType: "JSON",
             data: {},
             timeout: 50000,
@@ -34,8 +34,9 @@ layui.define(["element","jquery","layer"],function(exports){
             },
             success: function(ret) {
             	layer.close(l);
-            	if(ret.status==200){
+            	if(ret.code=="200"){
                  //   navBar(ret.data);
+                    console.log(ret.data);
                     $("#nav").html(navBar(ret.data));
             		/*$("#nav").html(navBar(ret.data)).height($(window).height()-230);
             		element.init();  //初始化页面元素
@@ -258,6 +259,9 @@ layui.define(["element","jquery","layer"],function(exports){
             	}else{
             		layer.msg(ret.msg);
             	}
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", localStorage.getItem('Authorization'));
             }
         });
 		

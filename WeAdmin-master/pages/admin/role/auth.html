@@ -79,7 +79,7 @@
 	 	function initTreeData() {
            // console.log($('#dataId').val());
             $.ajax({
-                url: "http://localhost/sys-api/sys/role/auth",
+                url: "/sys-api/sys/role/auth",
                 type: "post",
                 data:{id:$('#dataId').val()},
                 success: function (data) {
