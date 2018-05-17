@@ -22,4 +22,6 @@ public interface IRoleMenuService extends IService<RoleMenu> {
      * @return
      */
     List<Map<String, Object>> selectAuthByRoleId(String id);
+
+    void addRoleMenu(String roleId, String menuIds);
 }

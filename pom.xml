@@ -4,7 +4,7 @@
 
 	<groupId>com.linrry.auth.zuul</groupId>
 	<artifactId>spring-cloud-zuul-authentication</artifactId>
-	<version>v1.0.0</version>
+	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
     <parent>
@@ -22,6 +22,8 @@
 		<java.version>1.8</java.version>
 		<jjwt.version>0.7.0</jjwt.version>
 		<druid.version>1.0.11</druid.version>
+		<mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
+		<mybatisplus.version>2.1.8</mybatisplus.version>
 	</properties>
 
 	<modules>
@@ -34,6 +36,18 @@
     	<module>zuul-auth-api-sys</module>
     <module>zuul-auth-config-server</module>
   </modules>
+	<dependencies>
+
+		<!-- mybatis-plus begin -->
+		<dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>${mybatis-plus-boot-starter.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- mybatis-plus end -->
+
+	</dependencies>
 
 	<dependencyManagement>
 		<dependencies>
@@ -46,4 +60,25 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<!-- 打包包含*.xml -->
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+
+
+	</build>
 </project>

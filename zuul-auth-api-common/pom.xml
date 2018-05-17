@@ -5,20 +5,16 @@
   <parent>
     <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
-    <version>v1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.linrry.auth.zuul.common.api</groupId>
   <artifactId>zuul-auth-api-common</artifactId>
-  <version>v1.0.0</version>
-  <packaging>jar</packaging>
 
   <name>zuul-auth-api-common</name>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mybatis-plus-boot-starter.version>2.1.9</mybatis-plus-boot-starter.version>
-    <mybatisplus.version>2.1.8</mybatisplus.version>
+
     <mysql.version>5.1.32</mysql.version>
     <HikariCP.version>2.4.13</HikariCP.version>
     <fastjson.version>1.2.39</fastjson.version>
@@ -37,95 +33,11 @@
     </dependency>
 
 
-    <!-- mybatis-plus begin -->
-    <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-boot-starter</artifactId>
-      <version>${mybatis-plus-boot-starter.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <!-- mybatis-plus end -->
+
 
 
   </dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-    </plugins>
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-        <!-- 资源根目录排除各环境的配置，使用单独的资源目录来指定 -->
-        <excludes>
-          <exclude>uat/*</exclude>
-          <exclude>prod/*</exclude>
-          <exclude>dev/*</exclude>
-        </excludes>
-      </resource>
-      <resource>
-        <directory>src/main/resources/${profiles.active}</directory>
-      </resource>
-    </resources>
-  </build>
-
-
-  <repositories>
-    <repository>
-      <id>spring-milestones</id>
-      <name>Spring Milestones</name>
-      <url>http://repo.spring.io/milestone</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
-
-  <!-- 配置远程发布到私服，mvn deploy -->
-  <distributionManagement>
-    <snapshotRepository>
-      <id>nexus</id>
-      <name>Snapshot</name>
-      <url>http://tps.nexus:9394/repository/maven-snapshots/</url>
-    </snapshotRepository>
-
-    <repository>
-      <id>nexus</id>
-      <name>Nexus Releases</name>
-      <url>http://tps.nexus:9394/repository/maven-releases/</url>
-    </repository>
-  </distributionManagement>
-
-  <profiles>
-    <profile>
-      <!-- 本地开发环境 -->
-      <id>dev</id>
-      <properties>
-        <profiles.active>dev</profiles.active>
-      </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <!-- 测试环境 -->
-      <id>uat</id>
-      <properties>
-        <profiles.active>uat</profiles.active>
-      </properties>
-    </profile>
-    <profile>
-      <!-- 生产环境 -->
-      <id>prod</id>
-      <properties>
-        <profiles.active>prod</profiles.active>
-      </properties>
-    </profile>
-  </profiles>
 
 
 </project>

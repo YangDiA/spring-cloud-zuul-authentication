@@ -5,22 +5,19 @@
   <parent>
     <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
-    <version>v1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>com.linrry.auth.zuul.personal.api</groupId>
   <artifactId>zuul-auth-api-personal</artifactId>
-  <version>v1.0.0</version>
-  <packaging>jar</packaging>
 
   <name>zuul-auth-api-personal</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
     <dependency>
-      <groupId>com.linrry.auth.zuul.common.api</groupId>
+      <groupId>com.linrry.auth.zuul</groupId>
       <artifactId>zuul-auth-api-common</artifactId>
-      <version>v1.0.0</version>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
 
     <dependency>

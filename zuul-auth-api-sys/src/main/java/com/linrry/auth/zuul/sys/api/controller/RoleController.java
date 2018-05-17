@@ -59,11 +59,26 @@ public class RoleController extends CrudController<Role,IRoleService> {
      * @param id
      * @return
      */
+    @ResponseBody
     @RequestMapping("/auth")
     public Result auth(String id){
         Result result = Result.ok();
         List<Map<String, Object>> menuList =  roleMenuService.selectAuthByRoleId(id);
         result.setData(menuList);
+        return result;
+    }
+
+    /**
+     * 增加角色菜单
+     * @param roleId
+     * @param menuIds
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/addRoleMenu")
+    public Result addRoleMenu(String roleId,String menuIds){
+        Result result = Result.ok();
+        roleMenuService.addRoleMenu(roleId,menuIds);
         return result;
     }
 

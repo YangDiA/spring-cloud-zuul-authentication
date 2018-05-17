@@ -17,5 +17,7 @@ import java.util.Map;
  */
 public interface RoleMenuMapper extends BaseMapper<RoleMenu> {
 
+
+
     List<Map<String, Object>> selectAuthByRoleId(@Param("roleId") String roleId);
 }
