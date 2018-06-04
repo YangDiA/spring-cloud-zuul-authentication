@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-05-17 20:30:00
+Date: 2018-06-04 18:40:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,3 +30,4 @@ CREATE TABLE `cate` (
 -- Records of cate
 -- ----------------------------
 INSERT INTO `cate` VALUES ('1', '011', '系统项目1');
+INSERT INTO `cate` VALUES ('2', '002', '订单微服务');

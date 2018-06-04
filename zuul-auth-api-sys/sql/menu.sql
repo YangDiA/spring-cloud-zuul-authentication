@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-05-16 18:40:48
+Date: 2018-06-04 18:40:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,9 +45,9 @@ INSERT INTO `menu` VALUES ('15', '角色管理', '13', './pages/admin/role.html'
 INSERT INTO `menu` VALUES ('16', '用户管理', '13', './pages/admin/user/list.html', '&#xe6a7;', '15', '2', '0403', null);
 INSERT INTO `menu` VALUES ('17', '菜单管理', '13', './pages/admin/menu/list.html', '&#xe6a7;', '16', '2', '0404', null);
 INSERT INTO `menu` VALUES ('18', '角色菜单', '13', './pages/admin/role/list.html', '&#xe6a7;', '17', '2', '0405', null);
-INSERT INTO `menu` VALUES ('19', '权限分类', '13', './pages/admin/cate.html', '&#xe6a7;', '18', '2', '0406', null);
+INSERT INTO `menu` VALUES ('19', '权限分类', '13', './pages/admin/dataauthority/cate.html', '&#xe6a7;', '18', '2', '0406', null);
 INSERT INTO `menu` VALUES ('2', '会员列表', '1', './pages/member/list.html', '&#xe6a7;', '1', '2', '0101', null);
-INSERT INTO `menu` VALUES ('20', '权限管理', '13', './pages/admin/rule.html', '&#xe6a7;', '19', '2', '0407', null);
+INSERT INTO `menu` VALUES ('20', '权限管理', '13', './pages/admin/dataauthority/apirule.html', '&#xe6a7;', '19', '2', '0407', null);
 INSERT INTO `menu` VALUES ('21', '系统统计', '0', null, '&#xe6ce;', '20', '1', '05', null);
 INSERT INTO `menu` VALUES ('22', '拆线图', '21', './pages/echarts/echarts1.html', '&#xe6a7;', '21', '2', '0501', null);
 INSERT INTO `menu` VALUES ('23', '柱状图', '21', './pages/echarts/echarts2.html', '&#xe6a7;', '22', '2', '0502', null);
