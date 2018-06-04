@@ -20,7 +20,7 @@ public class GeneratorServiceEntity {
     @Test
     public void generateCode(){
         String packageName = "com.linrry.auth.zuul.sys.api";
-        generateByTables(packageName, "cate");
+        generateByTables(packageName, "apirule","role_apirule");
     }
 
     private void generateByTables(String packageName, String... tableNames){

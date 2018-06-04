@@ -5,12 +5,12 @@
   <parent>
     <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
-    <version>v1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.linrry.auth.zuul.conf</groupId>
   <artifactId>zuul-auth-config-server</artifactId>
-  <version>v1.0.0</version>
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>zuul-auth-config-server</name>
@@ -32,13 +32,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
+
       </plugin>
     </plugins>
   </build>

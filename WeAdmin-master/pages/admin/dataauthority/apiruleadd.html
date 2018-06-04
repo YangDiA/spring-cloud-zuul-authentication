@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../static/css/font.css">
     <link rel="stylesheet" href="../../../static/css/weadmin.css">
     <script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
-    <script src="cateedit.js" type="text/javascript" charset="utf-8"></script>
+    <script src="apiruleadd.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -18,28 +18,34 @@
     <![endif]-->
 </head>
 <body class="childrenBody">
-
-<div  class="layui-form form"  action="/role/doEdit" method="post" id="bind">
-    <div class="layui-form-item">
-        <label class="layui-form-label">分类编码 </label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input"  laybind="code"  name="code"  jq-verify="required" placeholder="请输入分类编码">
-        </div>
-    </div>
+<form class="layui-form form" id="form1">
     <div class="layui-form-item">
         <label class="layui-form-label">分类名称</label>
+        <div class="layui-input-inline" >
+            <select name="cateId" lay-filter="cateNameSelect" id ="cateNameSelect" jq-verify="required">
+                <option value="">请选择</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">api名称</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  laybind="cateName"  name="cateName"  jq-verify="required" placeholder="请输入分类名称">
+            <input type="text" class="layui-input"  name="ruleName"  jq-verify="required" placeholder="api名称">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">api路径</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"  name="ruleUrl"  jq-verify="required" placeholder="api路径">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <input type="hidden" name="dataId" id="dataId" value="" />
-            <button class="layui-btn" jq-submit data-type="submit" ><i class="iconfont icon-submit"></i> 立即提交</button>
-            <!--<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>-->
+            <button class="layui-btn" lay-filter="add" id="add" lay-submit="" >确定</button>
+            <button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
         </div>
     </div>
-</div>
-</body>
+</form>
 
+</body>
 </html>

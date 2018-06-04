@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../../static/css/font.css">
     <link rel="stylesheet" href="../../../static/css/weadmin.css">
     <script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
-    <script src="cateedit.js" type="text/javascript" charset="utf-8"></script>
+    <script src="apiruleedit.js" type="text/javascript" charset="utf-8"></script>
 
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
@@ -19,17 +19,23 @@
 </head>
 <body class="childrenBody">
 
-<div  class="layui-form form"  action="/role/doEdit" method="post" id="bind">
-    <div class="layui-form-item">
-        <label class="layui-form-label">分类编码 </label>
-        <div class="layui-input-block">
-            <input type="text" class="layui-input"  laybind="code"  name="code"  jq-verify="required" placeholder="请输入分类编码">
-        </div>
-    </div>
+<div  class="layui-form form"   method="post" id="bind">
     <div class="layui-form-item">
         <label class="layui-form-label">分类名称</label>
         <div class="layui-input-block">
-            <input type="text" class="layui-input"  laybind="cateName"  name="cateName"  jq-verify="required" placeholder="请输入分类名称">
+            <input type="text" class="layui-input"  laybind="cateId" name="cateId"  jq-verify="required" placeholder="分类名称">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">api名称</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input" laybind="ruleName"  name="ruleName"  jq-verify="required" placeholder="api名称">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">api路径</label>
+        <div class="layui-input-block">
+            <input type="text" class="layui-input"  laybind="ruleUrl"  name="ruleUrl"  jq-verify="required" placeholder="api路径">
         </div>
     </div>
     <div class="layui-form-item">

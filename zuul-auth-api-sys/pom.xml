@@ -5,12 +5,11 @@
   <parent>
     <groupId>com.linrry.auth.zuul</groupId>
     <artifactId>spring-cloud-zuul-authentication</artifactId>
-    <version>v1.0.0</version>
+    <version>0.0.1-SNAPSHOT</version>
   </parent>
 
   <groupId>com.linrry.auth.zuul.sys.api</groupId>
   <artifactId>zuul-auth-api-sys</artifactId>
-  <version>v1.0.0</version>
   <packaging>jar</packaging>
 
   <name>zuul-auth-api-sys</name>

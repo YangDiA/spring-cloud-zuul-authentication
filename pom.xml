@@ -38,14 +38,7 @@
   </modules>
 	<dependencies>
 
-		<!-- mybatis-plus begin -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-boot-starter</artifactId>
-			<version>${mybatis-plus-boot-starter.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- mybatis-plus end -->
+
 
 	</dependencies>
 
@@ -75,6 +68,7 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
+					<include>**/*.yml</include>
 				</includes>
 			</resource>
 		</resources>
