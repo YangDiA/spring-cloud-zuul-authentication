@@ -9,9 +9,22 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
         $ = layui.jquery,
         jQuery=layui.jquery,
         admin = layui.admin,
+        form = layui.form,
         laybind= layui.laybind,
         laydate = layui.laydate,
         ajaxpost = layui.ajaxpost;
+
+   /* ajaxpost.ajax("/sys-api/sys/cate/page",null, {},function (res) {
+
+        if(res.code=="200"){
+            $.each(res.data,function(index,item){
+                $("#cateNameSelect").append("<option value="+item.id+">"+item.cateName+"</option>");
+            })
+            form.render();
+        }else{
+
+        }
+    })*/
 
     var editData={};
 

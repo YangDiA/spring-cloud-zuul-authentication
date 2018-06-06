@@ -1,7 +1,11 @@
 package com.linrry.auth.zuul.sys.api.mapper;
 
-import com.linrry.auth.zuul.sys.api.entity.RoleApirule;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.linrry.auth.zuul.sys.api.entity.RoleApirule;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -12,5 +16,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-05-31
  */
 public interface RoleApiruleMapper extends BaseMapper<RoleApirule> {
-
+    List<Map<String, Object>> selectDataAuthByRoleId(@Param("roleId") String roleId);
 }

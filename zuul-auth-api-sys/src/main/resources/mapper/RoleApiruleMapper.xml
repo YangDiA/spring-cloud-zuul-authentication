@@ -2,5 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.linrry.auth.zuul.sys.api.mapper.RoleApiruleMapper">
 
-
+    <select id="selectDataAuthByRoleId" resultType="java.util.HashMap"
+            parameterType="java.lang.String">
+    SELECT
+	a.id,
+	a.cateId AS pId,
+	a.ruleName AS `name`,
+	a.cateName,
+   IF (a.`cateId` = 0, TRUE, FALSE) AS isParent,
+   TRUE AS `open`,
+    t.ruleId,
+IF ( t.ruleId IS NOT NULL, TRUE, FALSE ) AS `checked`
+FROM
+	`apirule` a
+LEFT JOIN (
+	SELECT
+		*
+	FROM
+		`role_apirule` ra
+	WHERE
+		ra.roleId = #{roleId}
+) t ON t.ruleId = a.`id`
+    </select>
 </mapper>

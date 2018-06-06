@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.linrry.auth.zuul.common.Result;
 import com.linrry.auth.zuul.common.controller.CrudController;
 import com.linrry.auth.zuul.sys.api.entity.Role;
+import com.linrry.auth.zuul.sys.api.service.IRoleApiruleService;
 import com.linrry.auth.zuul.sys.api.service.IRoleMenuService;
 import com.linrry.auth.zuul.sys.api.service.IRoleService;
 import org.apache.commons.lang.StringUtils;
@@ -36,6 +37,9 @@ public class RoleController extends CrudController<Role,IRoleService> {
     @Autowired
     private IRoleMenuService roleMenuService;
 
+    @Autowired
+    private IRoleApiruleService roleApiruleService;
+
 
     @ResponseBody
     @RequestMapping("/page")
@@ -55,7 +59,7 @@ public class RoleController extends CrudController<Role,IRoleService> {
     }
 
     /**
-     * 分配权限
+     * 分配功能权限
      * @param id
      * @return
      */
@@ -65,6 +69,20 @@ public class RoleController extends CrudController<Role,IRoleService> {
         Result result = Result.ok();
         List<Map<String, Object>> menuList =  roleMenuService.selectAuthByRoleId(id);
         result.setData(menuList);
+        return result;
+    }
+
+    /**
+     * 分配功能权限
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/dataauth")
+    public Result dataauth(String id){
+        Result result = Result.ok();
+        List<Map<String, Object>> dataAuthList =  roleApiruleService.selectDataAuthByRoleId(id);
+        result.setData(dataAuthList);
         return result;
     }
 
@@ -79,6 +97,21 @@ public class RoleController extends CrudController<Role,IRoleService> {
     public Result addRoleMenu(String roleId,String menuIds){
         Result result = Result.ok();
         roleMenuService.addRoleMenu(roleId,menuIds);
+        return result;
+    }
+
+    /**
+     * 增加角色菜单
+     * @param roleId
+     * @param apiruleIds
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/addRoleApirule")
+    public Result addRoleApirule(String roleId,String apiruleIds){
+        Result result = Result.ok();
+
+        roleApiruleService.addRoleApirule(roleId,apiruleIds);
         return result;
     }
 

@@ -36,11 +36,22 @@ public class Apirule implements Serializable {
      */
     @TableField("cateId")
     private Integer cateId;
+
+    @TableField("cateName")
+    private String cateName;
     /**
      * 创建时间
      */
     @TableField("createDate")
     private Date createDate;
+
+    /**
+     * 0api 1所属模块
+     */
+    @TableId( "type")
+    private Integer type;
+
+    private String code;
 
 
     public Integer getId() {
@@ -83,14 +94,27 @@ public class Apirule implements Serializable {
         this.createDate = createDate;
     }
 
-    @Override
-    public String toString() {
-        return "Apirule{" +
-        ", id=" + id +
-        ", ruleName=" + ruleName +
-        ", ruleUrl=" + ruleUrl +
-        ", cateId=" + cateId +
-        ", createDate=" + createDate +
-        "}";
+    public String getCateName() {
+        return cateName;
+    }
+
+    public void setCateName(String cateName) {
+        this.cateName = cateName;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
