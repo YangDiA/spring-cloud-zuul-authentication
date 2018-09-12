@@ -64,10 +64,10 @@
     </dependency>
     <!-- mybatis-plus begin -->
     <dependency>
-      <groupId>com.baomidou</groupId>
-      <artifactId>mybatis-plus-boot-starter</artifactId>
-      <version>${mybatis-plus-boot-starter.version}</version>
-    </dependency>
+    <groupId>com.baomidou</groupId>
+    <artifactId>mybatis-plus-boot-starter</artifactId>
+    <version>${mybatis-plus-boot-starter.version}</version>
+  </dependency>
     <!-- mybatis-plus end -->
 
   </dependencies>
