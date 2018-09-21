@@ -1,10 +1,6 @@
 package com.linrry.auth.zuul.gateway.auth.response;
 
-/**
- * Created by liumapp on 2/2/18.
- * E-mail:liumapp.com@gmail.com
- * home-page:http://www.liumapp.com
- */
+
 public class JwtAuthenticationResponse {
 
     private static final long serialVersionUID = 1250162333152483573L;

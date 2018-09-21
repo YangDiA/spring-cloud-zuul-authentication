@@ -55,6 +55,7 @@ public class MenuController extends CrudController<Menu,IMenuService> {
     @ResponseBody
     @GetMapping("/leftmenu")
     public Result leftmenu(){
+        System.out.println("*****************");
         Result result = Result.ok();
        // String uid = ((SysUser)request.getSession().getAttribute("session_user")).getId();
         String uid= "1";

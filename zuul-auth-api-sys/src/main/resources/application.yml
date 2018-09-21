@@ -1,9 +1,18 @@
 #app
 server:
     port: 8090
+eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+    service-url:
+      defaultZone: http://localhost:1234/eureka/
 
 #spring
 spring:
+  application:
+    name: sys-api
   devtools:
     restart:
       enabled: false

@@ -22,23 +22,33 @@ server:
   port: 2333
 
 eureka:
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
   client:
     service-url:
       defaultZone: http://localhost:1234/eureka/
 zuul:
+  sensitive-headers: true
+  threadPool:
+    useSeparateThreadPools: true  #让每个路由使用独立的线程池
+  host:
+    max-total-connections: 1000 # 默认值 200
+    max-per-route-connections: 200 # 默认值 20
+  ribbon-isolation-strategy: thread
+  semaphore:
+      max-semaphores: 2000
   routes:
-    company-api:
-      serviceId: company-api
-      path: /**
+    sys-api:
+      serviceId: sys-api
+      path: /sys/**
     personal-api:
       serviceId: personal-api
       path: /personal/**
     token-generator:
       serviceId: token-manager
       path: /**
-    sys-api:
-      serviceId: sys-api
-      path: /sys/**
+
   ignoredHeaders: Authorization
 
 
@@ -61,14 +71,14 @@ hystrix:
     default:
       execution:
         timeout:
-          enabled: false # 将 hystrix 的超时时间直接禁用掉，这样就没有超时的一说了，因为永远也不会超时了
+          enabled: true # 将 hystrix 的超时时间直接禁用掉，这样就没有超时的一说了，因为永远也不会超时了
         isolation:
           thread:
             timeoutInMilliseconds: 80000
 
 ribbon:
-  ConnectTimeout: 60000  #250
-  ReadTimeout: 50000 #1000
+  ConnectTimeout: 2500  #250
+  ReadTimeout: 1000 #1000
   OkToRetryOnAllOperations: true
   MaxAutoRetriesNextServer: 10
   MaxAutoRetries: 0
