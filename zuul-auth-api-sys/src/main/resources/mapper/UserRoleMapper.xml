@@ -4,5 +4,26 @@
 
     <!-- 开启二级缓存 -->
     <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>-->
-
+    <select id="selectRoleByUserId" resultType="java.util.HashMap"
+            parameterType="java.lang.String">
+        SELECT
+	 r.id,
+	 r.`roleName` AS `name`,
+     t.userId,
+     IF (
+        t.roleId IS NOT NULL,
+        TRUE,
+        FALSE
+     ) AS `checked`
+    FROM
+        `role` r
+    LEFT JOIN (
+	SELECT
+		*
+	FROM
+		`user_role` ur
+	WHERE
+		ur.userId = #{userId}
+    ) t ON t.roleId = r.`id`
+    </select>
 </mapper>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理系统SpringBoot LayUI</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../static/css/font.css">
+    <link rel="stylesheet" href="../../../static/css/weadmin.css">
+    <script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
+    <script src="user_role.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="../../../static/plugin/ztree/css/metroStyle/metroStyle.css" type="text/css">
+</head>
+<body class="childrenBody">
+<div id="form1" class="layui-form form"  >
+
+    <input type="hidden" id="authId" name="roleIds" value="" />
+    <div class="layui-form-item">
+        <label class="layui-form-label">分配角色</label>
+        <div class="layui-input-block">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+    </div>
+    <hr />
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <input type="hidden" name="dataId" id="dataId" value="" />
+            <button class="layui-btn" jq-submit data-type="submit" ><i class="iconfont icon-submit"></i> 立即提交</button>
+            <button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../../static/plugin/ztree/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="../../../static/plugin/ztree/jquery.ztree.all.min.js"></script>
+
+<script type="text/javascript">
+    //绑定表单数据
+    function bindCheck(){
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        var nodes = treeObj.getCheckedNodes(true);
+        $("#authId").empty();
+        var arr = [];
+        $.each(nodes,function(i,n){
+            arr.push(n.id);
+        });
+        $("#authId").val(arr.join());
+    }
+
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        edit: {
+            enable: false
+        },
+        callback:{
+            onCheck:function(treeId,treeNode){
+                bindCheck();
+            }
+        }
+    };
+
+    function initTreeData() {
+        // console.log($('#dataId').val());
+        $.ajax({
+            url: "/sys-api/sys/user/userrole",
+            type: "post",
+            data:{id:$('#dataId').val()},
+            success: function (data) {
+
+                // console.log(data.data);
+                $.fn.zTree.init($("#treeDemo"), setting,data.data);
+                bindCheck();
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+            },
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Authorization", localStorage.getItem('Authorization'));
+            },
+            complete: function () {
+            }
+        });
+    }
+    window.onload = function(){
+        setTimeout(initTreeData, 5 );
+    };
+
+
+    $(document).ready(function(){
+    });
+
+
+</script>
+</body>
+</html>

@@ -1,7 +1,10 @@
 package com.linrry.auth.zuul.sys.api.service;
 
-import com.linrry.auth.zuul.sys.api.entity.UserRole;
 import com.baomidou.mybatisplus.service.IService;
+import com.linrry.auth.zuul.sys.api.entity.UserRole;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.service.IService;
  */
 public interface IUserRoleService extends IService<UserRole> {
 
+    List<Map<String, Object>> selectRoleByUserId(String userId);
+
+    void addUserRole(String userId, String roleIds);
 }

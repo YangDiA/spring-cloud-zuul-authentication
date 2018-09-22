@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.linrry.auth.zuul.common.Result;
 import com.linrry.auth.zuul.common.controller.CrudController;
 import com.linrry.auth.zuul.sys.api.entity.User;
+import com.linrry.auth.zuul.sys.api.service.IUserRoleService;
 import com.linrry.auth.zuul.sys.api.service.IUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -30,6 +33,9 @@ public class UserController extends CrudController<User,IUserService> {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IUserRoleService userRoleService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -94,6 +100,35 @@ public class UserController extends CrudController<User,IUserService> {
         user.setType(1);
         userService.insert(user);
         return Result.ok("新增成功");
+    }
+
+    /**
+     * 角色
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/userrole")
+    public Result userrole(String id){
+        Result result = Result.ok();
+        List<Map<String, Object>> userRoleList =  userRoleService.selectRoleByUserId(id);
+        result.setData(userRoleList);
+        return result;
+    }
+
+    /**
+     * 增加用户角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/addUserRole")
+    public Result addUserRole(String userId,String roleIds){
+        Result result = Result.ok();
+        //roleMenuService.addRoleMenu(roleId,menuIds);
+        userRoleService.addUserRole(userId,roleIds);
+        return result;
     }
 
 }
