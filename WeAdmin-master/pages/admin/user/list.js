@@ -1,106 +1,107 @@
 layui.extend({
-	admin: '{/}../../../static/js/admin'
+    admin: '{/}../../../static/js/admin',
+    ajaxpost:'{/}../../../static/js/ajaxpost'
 });
 
-layui.use(['table', 'jquery', 'admin','laydate'], function() {
-	var table = layui.table,
-		$ = layui.jquery,
-		admin = layui.admin,
-		laydate = layui.laydate;
-		laydate.render({
-			elem: '#start' //指定元素
-		});
-		laydate.render({
-			elem: '#end' //指定元素
-		});
-
-	//console.log("ddd");
+layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
+    var table = layui.table,
+        $ = layui.jquery,
+        admin = layui.admin,
+        laydate = layui.laydate,
+        ajaxpost = layui.ajaxpost;
 
 
 
 
-	var  tabledata = [ {
-        "id" : "230e099407244982895ad972929d7228",
-        "userName" : "test123",
-        "password" : "7FEF6171469E80D32C0559F88B377245",
-        "userState" : 1,
-        "createTime" : "2017-07-06 14:37:07",
-        "userDesc" : "",
-        "userImg" : "/upload/2017-07-06/xktaxi7agg7q3b5ks23rvart84xpfa26.jpg"
-    }, {
-        "id" : "8ec475bfc69041a4a3984c5510f7982b",
-        "userName" : "admin",
-        "password" : "7FEF6171469E80D32C0559F88B377245",
-        "userState" : 1,
-        "createTime" : "2017-07-05 17:13:45",
-        "userDesc" : "超级管理员",
-        "userImg" : "/upload/2017-07-06/bw98sjevkkgi3cvzls5hqpc2dxhzo7qv.jpg"
-    }, {
-        "id" : "be9cb9ae66b64c54a85abee36c274a55",
-        "userName" : "test2",
-        "password" : "7FEF6171469E80D32C0559F88B377245",
-        "userState" : 1,
-        "createTime" : "2017-07-05 17:15:07",
-        "userDesc" : "测试用户",
-        "userImg" : "/upload/2017-07-05/gwh9rtgdr5ykm3wk2etilrazzgwf3k0d.jpg"
+    var  tabledata = [ {
+        "id" : "1",
+        "cateName" : "权限名称",
+        "code":"1123"
     } ];
-	table.render({
-		elem: '#list',
-		cellMinWidth: 80,
-		/*url:"http://localhost/personal-api/personal/list",
+    table.render({
+        elem: '#list',
+        cellMinWidth: 80,
+        url:"/sys-api/sys/user/page",
         method:"post",
-        where:{"Authorization":localStorage.getItem('Authorization')},
-        headers: {Authorization: localStorage.getItem('Authorization')},*/
-		cols: [
-			[{
-				type: 'checkbox'
-			}, {
-				field: 'userImg',title: '头像',sort: true
-			}, {
-				field: 'userName',title: '用户名'
-			}, {
-				field: 'createTime',title: '创建日期',sort: true
-			},{
-                field: 'userDesc',title: '描述',sort: true
+        headers: {Authorization: localStorage.getItem('Authorization')},
+        response: {
+            statusCode: 200 //成功的状态码，默认：0
+        },
+        cols: [
+            [{
+                type: 'checkbox'
             }, {
-                field: 'userState',title: '状态',templet: '#userStateTpl',unresize: true
-            },{
-				field: 'id',title: '操作',toolbar: '#operateTpl',unresize: true,
-			}]
-		],
-		data: tabledata,
-		event: true,
-		page: true
-	});
-	var active = {
-		getCheckData: function() { //获取选中数据
-			var checkStatus = table.checkStatus('list'),
-				data = checkStatus.data;
-			//console.log(data);
-			//layer.alert(JSON.stringify(data));
-			if(data.length > 0) {
-				layer.confirm('确认要删除吗？' + JSON.stringify(data), function(index) {
-					layer.msg('删除成功', {
-						icon: 1
-					});
-					//找到所有被选中的，发异步进行删除
-					$(".layui-table-body .layui-form-checked").parents('tr').remove();
-				});
-			} else {
-				layer.msg("请先选择需要删除的内容！");
-			}
+                field: 'id',title: '用户id',sort: true
+            }, {
+                field: 'name',title: '名称',sort: true
+            }, {
+                field: 'phone',title: '手机',sort: true
+            }, {
+                field: 'email',title: '邮箱',sort: true
+            },  {
+                field: 'id',title: '操作',toolbar: '#operateTpl',unresize: true,
+            }]
+        ],
+        data: tabledata,
+        event: true,
+        page: true
+    });
 
-		},
+
+    $('.weadmin-block .layui-btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+    $('.we-search .layui-btn').on('click', function() {
+        var type = $(this).data('type');
+        active[type] ? active[type].call(this) : '';
+    });
+
+    var active = {
+        getCheckData: function() { //获取选中数据
+            var checkStatus = table.checkStatus('list'),
+                data = checkStatus.data;
+
+            //layer.alert(JSON.stringify(data));
+            if(data.length > 0) {
+                var ids ="";
+                for(var i=0;i<data.length;i++){
+                    ids += data[i].id+",";
+                }
+
+                layer.confirm('确认要删除吗？删除后不能找回', function(index) {
+                    //console.log(ids.substring(0,ids.length-1));
+                    //找到所有被选中的，发异步进行删除
+                    ajaxpost.ajax("/sys-api/sys/cate/delete",null, {id:ids.substring(0,ids.length-1)},function (res) {
+                        if(res.code=="200"){
+
+                            layer.msg('删除成功', {
+                                icon: 1
+                            });
+
+                            location.replace(location.href);
+                            // $(".layui-table-body .layui-form-checked").parents('tr').remove();
+                        }else{
+                            layer.msg(res.msg,function(){
+                            });
+                        }
+                    })
+
+
+                });
+            } else {
+                layer.msg("请先选择需要删除的内容！");
+            }
+
+        },
 
 
         Reload: function(){
-            var start = $('#start');
             table.reload('list', {
+
                 where: {
-                	token:localStorage.getItem('token'),
-                    start: start.val(),
-					end:$('#end').val(),
-                    keyword:$('#keyword').val()
+
+                    cateName:$('#cateNameSearch').val()
 
                 },
                 page: {
@@ -109,31 +110,36 @@ layui.use(['table', 'jquery', 'admin','laydate'], function() {
             });
         }
 
-	};
+    };
 
 
 
-	/*用户-删除*/
-	window.del = function(obj, id) {
-		layer.confirm('确认要删除吗？', function(index) {
-			//发异步删除数据
-			$(obj).parents("tr").remove();
-			layer.msg('已删除!', {
-				icon: 1,
-				time: 1000
-			});
-		});
-	}
+    /*用户-删除*/
+    window.del = function(obj, id) {
+
+        console.log(id);
+        layer.confirm('确认要删除吗？删除后不能找回', function(index) {
+            //发异步删除数据
+
+            //找到所有被选中的，发异步进行删除
+            ajaxpost.ajax("/sys-api/sys/cate/delete",null, {id:id},function (res) {
+                if(res.code=="200"){
+
+                    layer.msg('删除成功', {
+                        icon: 1
+                    });
+
+                    location.replace(location.href);
+                    // $(".layui-table-body .layui-form-checked").parents('tr').remove();
+                }else{
+                    layer.msg(res.msg,function(){
+                    });
+                }
+            })
+
+
+        });
+    }
+
 
 });
-
-function delAll(argument) {
-	var data = tableCheck.getData();
-	layer.confirm('确认要删除吗？' + data, function(index) {
-		//捉到所有被选中的，发异步进行删除
-		layer.msg('删除成功', {
-			icon: 1
-		});
-		$(".layui-form-checked").not('.header').parents('tr').remove();
-	});
-}

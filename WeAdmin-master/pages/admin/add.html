@@ -99,8 +99,10 @@
     		layui.extend({
 					admin: '{/}../../static/js/admin'
 				});
-        layui.use(['form','layer','admin'], function(){
+        layui.use(['form','layer','jquery','admin'], function(){
           var form = layui.form,
+              $ = layui.jquery,
+              jQuery=layui.jquery,
           	admin = layui.admin,
           	layer = layui.layer;
           //自定义验证规则
@@ -120,7 +122,7 @@
 
           //监听提交
           form.on('submit(add)', function(data){
-            console.log(data);
+            console.log(data.field);
             //发异步，把数据提交给php
             layer.alert("增加成功", {icon: 6},function () {
                 // 获得frame索引
