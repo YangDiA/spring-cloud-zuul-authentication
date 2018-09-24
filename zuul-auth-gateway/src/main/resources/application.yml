@@ -71,14 +71,14 @@ hystrix:
     default:
       execution:
         timeout:
-          enabled: true # 将 hystrix 的超时时间直接禁用掉，这样就没有超时的一说了，因为永远也不会超时了
+          enabled: false # 将 hystrix 的超时时间直接禁用掉，这样就没有超时的一说了，因为永远也不会超时了
         isolation:
           thread:
             timeoutInMilliseconds: 80000
 
 ribbon:
-  ConnectTimeout: 2500  #250
-  ReadTimeout: 1000 #1000
+  ConnectTimeout: 25000  #250
+  ReadTimeout: 10000 #1000
   OkToRetryOnAllOperations: true
   MaxAutoRetriesNextServer: 10
   MaxAutoRetries: 0
