@@ -55,7 +55,7 @@ public class UserController extends CrudController<User,IUserService> {
         Result result = Result.ok();
         EntityWrapper<User> ew = new EntityWrapper<User>();
         if (StringUtils.isNotBlank(userName)) {
-            ew.like("userName", userName);
+            ew.like("name", userName);
         }
         Page<User> pageData = userService.selectPage(new Page<User>(page, limit), ew);
         result.setData(pageData.getRecords()).setCount(pageData.getTotal());
