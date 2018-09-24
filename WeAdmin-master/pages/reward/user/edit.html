@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>后台管理系统SpringBoot LayUI</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="stylesheet" href="../../../static/css/font.css">
+	<link rel="stylesheet" href="../../../static/css/weadmin.css">
+	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
+	<script src="edit.js" type="text/javascript" charset="utf-8"></script>
+
+	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+	<!--[if lt IE 9]>
+	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+	<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="childrenBody">
+
+<div  class="layui-form form"  action="" method="post" id="bind">
+	<div class="layui-form-item">
+		<label class="layui-form-label">名称 </label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input"  laybind="name"  name="name"  jq-verify="required" placeholder="请输入名称">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">手机号</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input"  laybind="phone"  name="phone"  jq-verify="required" placeholder="请输入手机号">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">邮箱</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input"  laybind="email"  name="email"  jq-verify="required" placeholder="请输入邮箱">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<input type="hidden" name="dataId" id="dataId" value="" />
+			<button class="layui-btn" jq-submit data-type="submit" ><i class="iconfont icon-submit"></i> 立即提交</button>
+			<!--<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>-->
+		</div>
+	</div>
+</div>
+</body>
+
+</html>
