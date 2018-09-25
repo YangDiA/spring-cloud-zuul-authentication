@@ -12,11 +12,22 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 
 
 
-
+    function dateFormat(v){
+        var date = new Date(v);
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        m = m<10?'0'+m:m;
+        var d = date.getDate();
+        d = d<10?("0"+d):d;
+        var h = date.getHours();
+        h = h<10?("0"+h):h;
+        var M = date.getMinutes();
+        M = M<10?("0"+M):M;
+        var str = y+"-"+m+"-"+d+" "+h+":"+M;
+        return str;
+    }
     var  tabledata = [ {
-        "id" : "1",
-        "cateName" : "权限名称",
-        "code":"1123"
+
     } ];
     table.render({
         elem: '#list',
@@ -31,14 +42,44 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             [{
                 type: 'checkbox'
             }, {
-                field: 'id',title: '用户id',sort: true
+                field: 'userId',title: '用户id',sort: true
             }, {
-                field: 'name',title: '名称',sort: true
+                field: 'name',title: '会员姓名',sort: true
             }, {
                 field: 'phone',title: '手机',sort: true
             }, {
-                field: 'email',title: '邮箱',sort: true
-            },  {
+                field: 'eamail',title: '邮箱',sort: true
+            }, {
+                field: 'status',title: '会员状态',templet:function (row) {
+                    var s = "";
+                    if(row.status==0){
+                        s = "正常";
+                    }else if(row.status==1){
+                        s = "冻结";
+                    }else{
+                        s = "失效";
+                    }
+                    return s;
+                }
+            }, {
+                field: 'recommendId',title: '推荐会员ID',sort: true
+            }, {
+                field: 'level',title: '会员级别',sort: true
+            }, {
+                field: 'amount',title: '账户金额',sort: true
+            }, {
+                field: 'freezeAmount',title: 'freeze_amount',sort: true
+            }, {
+                field: 'address',title: '收货地址',sort: true
+            }, {
+                field: 'bank_id',title: '银行卡号',sort: true
+            }, {
+                field: 'bankAddress',title: '开户行地址',sort: true
+            }, {
+                field: 'createTime',title: '创建时间',sort: true,templet:function (row) {
+                    return dateFormat(row.createTime);
+                }
+            }, {
                 field: 'id',title: '操作',toolbar: '#operateTpl',unresize: true,
             }]
         ],

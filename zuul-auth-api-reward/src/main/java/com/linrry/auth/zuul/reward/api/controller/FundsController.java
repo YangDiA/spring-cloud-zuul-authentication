@@ -37,7 +37,7 @@ public class FundsController {
         Result result = Result.ok();
         EntityWrapper<Funds> ew = new EntityWrapper<Funds>();
         if (StringUtils.isNotBlank(userId)) {
-            ew.like("userId", userId);
+            ew.eq("user_id", userId);
         }
         Page<Funds> pageData = fundsService.selectPage(new Page<Funds>(page, limit), ew);
         result.setData(pageData.getRecords()).setCount(pageData.getTotal());

@@ -12,6 +12,20 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 
 
 
+    function dateFormat(v){
+        var date = new Date(v);
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        m = m<10?'0'+m:m;
+        var d = date.getDate();
+        d = d<10?("0"+d):d;
+        var h = date.getHours();
+        h = h<10?("0"+h):h;
+        var M = date.getMinutes();
+        M = M<10?("0"+M):M;
+        var str = y+"-"+m+"-"+d+" "+h+":"+M;
+        return str;
+    }
 
     var  tabledata = [ {
 
@@ -29,13 +43,46 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             [{
                 type: 'checkbox'
             }, {
-                field: 'id',title: '用户id',sort: true
+                field: 'fundsId',title: '流水ID',sort: true
             }, {
-                field: 'name',title: '名称',sort: true
+                field: 'userId',title: '会员ID',sort: true
             }, {
-                field: 'phone',title: '手机',sort: true
+                field: 'amount',title: '金额',sort: true
             }, {
-                field: 'email',title: '邮箱',sort: true
+                field: 'type',title: '类型',sort: true,templet:function (row) {
+                    var s = "";
+                    if(row.status==1){
+                        s = "充值";
+                    }else if(row.status==2){
+                        s = "提现";
+                    }else if(row.status==3){
+                        s = "推荐奖金";
+                    }else{
+                        s = "团队奖金";
+                    }
+                    return s;
+                }
+
+            }, {
+                field: 'status',title: '状态',sort: true,templet:function (row) {
+                    var s = "";
+                    if(row.status==1){
+                        s = "等待审核";
+                    }else if(row.status==2){
+                        s = "审核成功";
+                    }else{
+                        s = " ";
+                    }
+                    return s;
+                }
+            }, {
+                field: 'recommendedId',title: '被推荐会员ID',sort: true
+            }, {
+                field: 'remark',title: '描述',sort: true
+            }, {
+                field: 'createTime',title: '创建时间',sort: true,templet:function (row) {
+                    return dateFormat(row.createTime);
+                }
             },  {
                 field: 'id',title: '操作',toolbar: '#operateTpl',unresize: true,
             }]
@@ -99,7 +146,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 
                 where: {
 
-                    userName:$('#userNameSearch').val()
+                    userId:$('#userIdSearch').val()
 
                 },
                 page: {

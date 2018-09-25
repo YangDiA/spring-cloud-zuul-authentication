@@ -37,7 +37,7 @@ public class RewardController {
         Result result = Result.ok();
         EntityWrapper<Reward> ew = new EntityWrapper<Reward>();
         if (StringUtils.isNotBlank(userId)) {
-            ew.like("userId", userId);
+            ew.eq("user_id", userId);
         }
         Page<Reward> pageData = rewardService.selectPage(new Page<Reward>(page, limit), ew);
         result.setData(pageData.getRecords()).setCount(pageData.getTotal());

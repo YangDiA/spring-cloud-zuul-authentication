@@ -41,7 +41,7 @@
 
 	<div class="weadmin-block">
 		<button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
-		<button class="layui-btn" onclick="WeAdminShow('添加','./add.html',600,400)"><i class="layui-icon"></i>添加</button>
+		<!--<button class="layui-btn" onclick="WeAdminShow('添加','./add.html',600,400)"><i class="layui-icon"></i>添加</button>-->
 
 	</div>
 
@@ -49,18 +49,13 @@
 		<table class="layui-hide" id="list"></table>
 	</div>
 
-	<script type="text/html" id="roleStateTpl">
-		<input type="checkbox" name="show" lay-skin="switch" lay-text="启用|禁止" {{#if (parseInt(d.roleState)==1){ }}checked="checked" value="true" {{# } }} >
-	</script>
 
 	<script type="text/html" id="operateTpl">
 
-		<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}}', 600, 400)" href="javascript:;">
+		<!--<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}}', 600, 400)" href="javascript:;">
 			<i class="layui-icon">&#xe642;</i>
-		</a>
-		<a title="分配角色" onclick="WeAdminEdit('分配权限-{{d.name}}','./user_role.html','{{d.id}}',600,400)" href="javascript:;">
-			<i class="layui-icon">&#xe63c;</i>
-		</a>
+		</a>-->
+
 
 		<a title="删除" onclick="del(this,'{{d.id}}')" href="javascript:;">
 			<i class="layui-icon">&#xe640;</i>
