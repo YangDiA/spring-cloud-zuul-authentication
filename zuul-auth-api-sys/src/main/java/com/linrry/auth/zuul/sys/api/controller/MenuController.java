@@ -9,8 +9,10 @@ import com.linrry.auth.zuul.sys.api.entity.Menu;
 import com.linrry.auth.zuul.sys.api.service.IMenuService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +40,7 @@ public class MenuController extends CrudController<Menu,IMenuService> {
 
         Result result = Result.ok();
         EntityWrapper<Menu> ew = new EntityWrapper<Menu>();
-        ew.orderBy("code", true);
+        ew.orderBy("id", true);
         if (StringUtils.isNotBlank(menuName)) {
             ew.like("menuName", menuName);
         }
@@ -74,6 +76,23 @@ public class MenuController extends CrudController<Menu,IMenuService> {
         result.setData(list);
         return result;
     }
+
+    @ResponseBody
+    @RequestMapping("/add_item")
+    public Result addItem(@Valid Menu t, BindingResult result){
+        if(result.hasErrors()){
+            String firstError = result.getFieldErrors().get(0).getDefaultMessage();
+            return Result.failure(firstError);
+        }
+        Menu parentMenu = menuService.selectById(t.getPid());
+        if(parentMenu == null){
+            return Result.failure("父级菜单未查询到");
+        }
+        t.setDeep(parentMenu.getDeep()+1);
+        menuService.insert(t);
+        return Result.ok("新增成功");
+    }
+
 
 }
 

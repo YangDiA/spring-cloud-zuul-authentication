@@ -49,10 +49,17 @@
 
 	<script type="text/html" id="operateTpl">
 
+		{{#  if(d.deep == 1){ }}
 		<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}}', 600, 400)" href="javascript:;">
 			<i class="layui-icon">&#xe642;</i>
 		</a>
-		<a title="添加子菜单" onclick="WeAdminEdit('添加子菜单','./edit_item.html','{{d.id}}',600,400)" href="javascript:;">
+		{{#  } else { }}
+		<a title="编辑" onclick="WeAdminEdit('编辑子菜单','./edit_item.html','{{d.id}}', 600, 400)" href="javascript:;">
+			<i class="layui-icon">&#xe642;</i>
+		</a>
+		{{#  } }}
+
+		<a title="添加子菜单" onclick="WeAdminEdit('添加-{{d.menuName}}-子菜单','./add_item.html','{{d.id}}',600,400)" href="javascript:;">
 			<i class="layui-icon">&#xe63c;</i>
 		</a>
 		<a title="删除" onclick="del(this,'要删除的id')" href="javascript:;">

@@ -1,6 +1,9 @@
 package com.linrry.auth.zuul.sys.api.entity;
 
 import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.enums.IdType;
+
 import java.io.Serializable;
 
 /**
@@ -18,7 +21,8 @@ public class Menu implements Serializable {
     /**
      * 主键
      */
-    private String id;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
     /**
      * 菜单名称
      */
@@ -55,11 +59,11 @@ public class Menu implements Serializable {
     private String dataResource;
 
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

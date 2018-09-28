@@ -22,6 +22,6 @@
         FROM `menu` m
         LEFT JOIN (SELECT * FROM `role_menu` rm WHERE
         rm.roleId = #{roleId}) t
-        ON t.menuId = m.`id`
+        ON t.menuId = m.`id` ORDER BY m.id asc
     </select>
 </mapper>

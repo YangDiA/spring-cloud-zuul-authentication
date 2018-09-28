@@ -19,7 +19,7 @@
         LEFT JOIN role_menu rm ON ur.`roleId` = rm.`roleId`
         WHERE ur.`userId` = #{uid}
         )
-        ORDER BY sort ASC
+        ORDER BY id ASC
     </select>
 
 </mapper>

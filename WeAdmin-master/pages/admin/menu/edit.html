@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="../../../static/css/font.css">
 	<link rel="stylesheet" href="../../../static/css/weadmin.css">
 	<script src="../../../lib/layui2.2.6/layui.js" charset="utf-8"></script>
+	<script src="edit.js" type="text/javascript" charset="utf-8"></script>
 	<!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
 	<!--[if lt IE 9]>
 	<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -16,21 +17,21 @@
 	<![endif]-->
 </head>
 <body class="childrenBody">
-	<form class="layui-form form" id="form1" action="/menu/doEdit" method="post">
-		<input type="hidden" name="id" value="${menu.id}" >
+	<div class="layui-form form"  id="bind" >
+
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单编码</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="code" value="${menu.code}" jq-verify="required" placeholder="请输入菜单编码">
+				<input type="text" class="layui-input"  laybind="code" name="code"  jq-verify="required" placeholder="请输入菜单编码">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单名称</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="menuName" value="${menu.menuName}"  jq-verify="required" placeholder="请输入菜单名称">
+				<input type="text" class="layui-input"  name="menuName" laybind="menuName"   jq-verify="required" placeholder="请输入菜单名称">
 			</div>
 		</div>
-		<div class="layui-form-item">
+		<!--<div class="layui-form-item">
 			<label class="layui-form-label">菜单URL</label>
 			<div class="layui-input-block">
 				<input type="text" class="layui-input"  name="url" value="${menu.url}"  placeholder="请输入菜单URL">
@@ -41,30 +42,26 @@
 			<div class="layui-input-block">
 				<input type="text" class="layui-input"  name="resource" value="${menu.resource}"  placeholder="请输入菜单资源">
 			</div>
-		</div>
+		</div>-->
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单图标</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="icon" value="${menu.icon}"  placeholder="请输入菜单图标">
+				<input type="text" class="layui-input"  name="icon" laybind="icon"  placeholder="请输入菜单图标">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">菜单排序</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input"  name="sort" value="${menu.sort}" value="${menu.sort}" jq-verify="number"  placeholder="请输入菜单排序">
+				<input type="text" class="layui-input"  name="sort" laybind="sort" jq-verify="number"  placeholder="请输入菜单排序">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<input type="hidden" name="dataId" id="dataId" value="" />
-				<button class="layui-btn" jq-submit lay-filter="submit"><i class="iconfont icon-submit"></i> 立即提交</button>
-				<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>
-
-		    </div>
+				<button class="layui-btn" jq-submit data-type="submit" ><i class="iconfont icon-submit"></i> 立即提交</button>
+				<!--<button type="reset" class="layui-btn fds"><i class="iconfont icon-reset"></i> 重置</button>-->
+			</div>
 		</div>
-	</form>
-	<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
-		<ul id="treeDemo" class="ztree" style="margin-top:0; width:160px;"></ul>
 	</div>
 
 </body>
