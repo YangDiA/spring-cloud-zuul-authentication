@@ -2,17 +2,10 @@ package com.linrry.auth.zuul.token.filter;
 
 import com.linrry.auth.zuul.token.service.MultyUserDetailsService;
 import com.linrry.auth.zuul.token.util.JwtTokenUtil;
-import io.jsonwebtoken.ExpiredJwtException;
-import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -41,7 +34,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
-        final String requestHeader = request.getHeader(this.tokenHeader);
+        /*final String requestHeader = request.getHeader(this.tokenHeader);
 
         String username = null;
         String authToken = null;
@@ -84,7 +77,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
 
-        }
+        }*/
 
         chain.doFilter(request, response);
     }

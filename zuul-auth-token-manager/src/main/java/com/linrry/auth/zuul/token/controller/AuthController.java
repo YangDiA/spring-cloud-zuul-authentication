@@ -18,6 +18,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,13 +27,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * generate & refresh token
- * for personal User and company User
- * Created by liumapp on 2/8/18.
- * E-mail:liumapp.com@gmail.com
- * home-page:http://www.liumapp.com
- */
 @RestController
 @RequestMapping(value = "/unchk")
 public class AuthController {
@@ -69,7 +63,7 @@ public class AuthController {
         logger.info("this is company login , and active info is : " + activeInfo);
         authenticationRequest.setUsername(authenticationRequest.getPhone());
         // Perform the security
-        Authentication authentication = null;
+       /* Authentication authentication = null;
         try {
             authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -79,13 +73,21 @@ public class AuthController {
             );
         } catch (AuthenticationException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
 
         // Reload password post-security so we can generate token
-        final UserDetails userDetails = userDetailsService.loadUserByPhone(authenticationRequest.getPhone());
-
         Result resut = Result.ok();
+        final UserDetails userDetails;
+        try {
+            userDetails = userDetailsService.loadUserByPhone(authenticationRequest.getPhone());
+        } catch (UsernameNotFoundException e) {
+            resut.setCode("1001");
+            resut.setMsg("没有该用户");
+            return ResponseEntity.ok(resut);
+        }
+
+
 
         //密码检验
         if(!passwordEncoder.matches(authenticationRequest.getPassword(),userDetails.getPassword())){
@@ -93,7 +95,7 @@ public class AuthController {
             resut.setMsg("密码错误");
             return ResponseEntity.ok(resut);
         }
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        //SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = jwtTokenUtil.generateToken(userDetails, device);
         System.out.println(token);
         resut.setData(token);
