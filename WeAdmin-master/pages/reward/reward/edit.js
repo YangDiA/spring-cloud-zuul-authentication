@@ -12,12 +12,16 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
         laybind= layui.laybind,
         laydate = layui.laydate,
         ajaxpost = layui.ajaxpost;
+    laydate.render({
+        elem: '#senddate' //指定元素
+        ,format: 'yyyyMMdd'
+    });
 
     var editData={};
 
     var bind;
     var dataId = $('input[name="dataId"]').val();
-    ajaxpost.ajax("/sys-api/sys/user/selectById",null, {id:dataId},function (res) {
+    ajaxpost.ajax("/reward-api/reward/reward/selectById",null, {id:dataId},function (res) {
         if(res.code=="200"){
             editData =res.data
             bind =new laybind.laybinddata($('#bind'),{data:editData});
@@ -32,10 +36,10 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
     var active = {
         submit: function() {
             var data = bind.getData();
-            console.log(data);
-            console.log(editData);
+            delete  data.createTime;
+            data.senddate = $("#senddate").val();
             //发异步
-            ajaxpost.ajax("/sys-api/sys/user/update",null, {id:data.id,name:data.name, phone:data.phone,email:data.email},function (res) {
+            ajaxpost.ajax("/reward-api/reward/reward/update",null, data ,function (res) {
                 if(res.code=="200"){
                     layer.alert("修改成功", {icon: 6},function () {
                         // 获得frame索引

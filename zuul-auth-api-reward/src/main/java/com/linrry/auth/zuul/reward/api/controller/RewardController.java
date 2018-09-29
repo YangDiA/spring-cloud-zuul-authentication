@@ -4,6 +4,7 @@ package com.linrry.auth.zuul.reward.api.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.linrry.auth.zuul.common.Result;
+import com.linrry.auth.zuul.common.controller.CrudController;
 import com.linrry.auth.zuul.reward.api.entity.Reward;
 import com.linrry.auth.zuul.reward.api.service.IRewardService;
 import org.apache.commons.lang.StringUtils;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/reward/reward")
-public class RewardController {
+public class RewardController extends CrudController<Reward,IRewardService> {
 
     @Autowired
     private IRewardService rewardService;

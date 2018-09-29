@@ -11,16 +11,22 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
         admin = layui.admin,
         laybind= layui.laybind,
         laydate = layui.laydate,
-        ajaxpost = layui.ajaxpost;
+        ajaxpost = layui.ajaxpost,
+        form = layui.form;
 
     var editData={};
 
     var bind;
-    var dataId = $('input[name="dataId"]').val();
-    ajaxpost.ajax("/sys-api/sys/user/selectById",null, {id:dataId},function (res) {
+    var dataId = $('input[id="dataId"]').val();
+
+
+
+    ajaxpost.ajax("/reward-api/reward/user/selectById",null, {id:dataId},function (res) {
         if(res.code=="200"){
             editData =res.data
             bind =new laybind.laybinddata($('#bind'),{data:editData});
+            $("#status").val(res.data.status);
+            form.render('select','selFilter');
         }else{
             layer.msg(res.msg,function(){
             });
@@ -32,10 +38,12 @@ layui.use(['table', 'jquery', 'admin','laybind','laydate','ajaxpost'], function(
     var active = {
         submit: function() {
             var data = bind.getData();
-            console.log(data);
-            console.log(editData);
+           // data.userId = dataId;
+            delete  data.createTime;
+            delete data.updateTime;
+            data.status = $("#status").val();
             //发异步
-            ajaxpost.ajax("/sys-api/sys/user/update",null, {id:data.id,name:data.name, phone:data.phone,email:data.email},function (res) {
+            ajaxpost.ajax("/reward-api/reward/user/update",null, data,function (res) {
                 if(res.code=="200"){
                     layer.alert("修改成功", {icon: 6},function () {
                         // 获得frame索引

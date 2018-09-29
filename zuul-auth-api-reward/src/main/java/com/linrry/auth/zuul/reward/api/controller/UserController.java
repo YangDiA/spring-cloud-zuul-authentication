@@ -10,9 +10,13 @@ import com.linrry.auth.zuul.reward.api.service.IUserService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * <p>
@@ -44,6 +48,41 @@ public class UserController extends CrudController<User,IUserService> {
         result.setData(pageData.getRecords()).setCount(pageData.getTotal());
         return  result;
 
+    }
+
+    @ResponseBody
+    @RequestMapping("/add")
+    public Result add(@Valid User t, BindingResult result){
+        if(result.hasErrors()){
+            String firstError = result.getFieldErrors().get(0).getDefaultMessage();
+            return Result.failure(firstError);
+        }
+        //设置默认值
+        t.setCreateTime(new Date());
+        t.setAmount(0);
+        t.setLevel(1);
+        t.setFreezeAmount(0);
+        t.setUpdateTime(new Date());
+        t.setStatus(0);
+        if (StringUtils.isBlank(t.getName())){
+            t.setName(t.getPhone());
+        }
+
+        userService.insert(t);
+        return Result.ok("新增成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public Result update(@Valid User t,BindingResult result){
+        if(result.hasErrors()){
+            String firstError = result.getFieldErrors().get(0).getDefaultMessage();
+            return Result.failure(firstError);
+        }
+        t.setUpdateTime(new Date());
+        t.setCreateTime(null);
+        userService.updateById(t);
+        return Result.ok("更新成功");
     }
 }
 

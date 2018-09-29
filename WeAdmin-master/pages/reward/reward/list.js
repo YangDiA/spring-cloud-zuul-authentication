@@ -47,6 +47,8 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             }, {
                 field: 'userId',title: '会员ID',sort: true
             }, {
+                field: 'userLevel',title: '会员级别',sort: true
+            }, {
                 field: 'rewardAmount',title: '奖励金额',sort: true
             }, {
                 field: 'allAmount',title: '团队上月总利润',sort: true

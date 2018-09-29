@@ -72,7 +72,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             }, {
                 field: 'address',title: '收货地址',sort: true
             }, {
-                field: 'bank_id',title: '银行卡号',sort: true
+                field: 'bankId',title: '银行卡号',sort: true
             }, {
                 field: 'bankAddress',title: '开户行地址',sort: true
             }, {

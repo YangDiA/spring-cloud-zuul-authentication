@@ -20,7 +20,7 @@
 <div class="weadmin-nav">
 			<span class="layui-breadcrumb">
         <a href="">首页</a>
-        <a href="">管理员管理</a>
+        <a href="">奖励管理</a>
         <a>
           <cite>奖金用户列表</cite></a>
       </span>
@@ -41,7 +41,7 @@
 
 	<div class="weadmin-block">
 		<button class="layui-btn layui-btn-danger" data-type="getCheckData"><i class="layui-icon">&#xe640;</i>批量删除</button>
-		<!--<button class="layui-btn" onclick="WeAdminShow('添加','./add.html',600,400)"><i class="layui-icon"></i>添加</button>-->
+		<button class="layui-btn" onclick="WeAdminShow('添加','./add.html',600,700)"><i class="layui-icon"></i>添加</button>
 
 	</div>
 
@@ -52,12 +52,12 @@
 
 	<script type="text/html" id="operateTpl">
 
-		<!--<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.id}}', 600, 400)" href="javascript:;">
+		<a title="编辑" onclick="WeAdminEdit('编辑','./edit.html','{{d.userId}}', 700, 700)" href="javascript:;">
 			<i class="layui-icon">&#xe642;</i>
-		</a>-->
+		</a>
 
 
-		<a title="删除" onclick="del(this,'{{d.id}}')" href="javascript:;">
+		<a title="删除" onclick="del(this,'{{d.userId}}')" href="javascript:;">
 			<i class="layui-icon">&#xe640;</i>
 		</a>
 	</script>

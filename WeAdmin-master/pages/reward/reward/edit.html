@@ -19,25 +19,30 @@
 </head>
 <body class="childrenBody">
 
-<div  class="layui-form form"  action="" method="post" id="bind">
+<div  class="layui-form form"   id="bind">
+
+
+
 	<div class="layui-form-item">
-		<label class="layui-form-label">名称 </label>
-		<div class="layui-input-block">
-			<input type="text" class="layui-input"  laybind="name"  name="name"  jq-verify="required" placeholder="请输入名称">
+		<label class="layui-form-label">奖励金额 </label>
+		<div class="layui-input-inline">
+			<input type="number" class="layui-input"  laybind="rewardAmount"  name="rewardAmount"  >
 		</div>
 	</div>
 	<div class="layui-form-item">
-		<label class="layui-form-label">手机号</label>
-		<div class="layui-input-block">
-			<input type="text" class="layui-input"  laybind="phone"  name="phone"  jq-verify="required" placeholder="请输入手机号">
+		<label class="layui-form-label layui-show-*-inline ">团队上月总利润</label>
+		<div class="layui-input-inline">
+			<input type="text" class="layui-input"  laybind="allAmount"  name="allAmount"  >
 		</div>
 	</div>
+
 	<div class="layui-form-item">
-		<label class="layui-form-label">邮箱</label>
-		<div class="layui-input-block">
-			<input type="text" class="layui-input"  laybind="email"  name="email"  jq-verify="required" placeholder="请输入邮箱">
+		<label class="layui-form-label">发奖日期 </label>
+		<div class="layui-input-inline">
+			<input type="text" class="layui-input"  laybind="senddate"  name="senddate" id="senddate" >
 		</div>
 	</div>
+
 	<div class="layui-form-item">
 		<div class="layui-input-block">
 			<input type="hidden" name="dataId" id="dataId" value="" />
