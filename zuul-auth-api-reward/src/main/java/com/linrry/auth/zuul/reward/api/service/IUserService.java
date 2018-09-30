@@ -1,5 +1,6 @@
 package com.linrry.auth.zuul.reward.api.service;
 
+import com.linrry.auth.zuul.common.Result;
 import com.linrry.auth.zuul.reward.api.entity.User;
 import com.baomidou.mybatisplus.service.IService;
 
@@ -12,5 +13,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @since 2018-09-24
  */
 public interface IUserService extends IService<User> {
+
+    Result addUser(User user);
 
 }

@@ -73,6 +73,7 @@ public class SecurityConf extends WebSecurityConfigurerAdapter {
 
                 .authorizeRequests()
                 //.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers("/**").permitAll()
 
                 // allow anonymous resource requests
                 .antMatchers(

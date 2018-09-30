@@ -1,10 +1,16 @@
 package com.linrry.auth.zuul.reward.api.service.impl;
 
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.linrry.auth.zuul.common.Result;
 import com.linrry.auth.zuul.reward.api.entity.User;
 import com.linrry.auth.zuul.reward.api.mapper.UserMapper;
+import com.linrry.auth.zuul.reward.api.ribbonservice.SysUserService;
 import com.linrry.auth.zuul.reward.api.service.IUserService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -17,4 +23,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Autowired
+    private SysUserService sysUserService;
+
+    @Override
+    public Result addUser(User user) {
+
+        //添加系统用户
+        Result result = sysUserService.addSysUser(user.getPhone(),user.getEamail(),user.getPassword());
+        if (!result.checkOk()){
+            return result;
+        }
+        //设置默认值
+        user.setCreateTime(new Date());
+        user.setAmount(0);
+        user.setLevel(1);
+        user.setFreezeAmount(0);
+        user.setUpdateTime(new Date());
+        user.setStatus(0);
+        if (StringUtils.isBlank(user.getName())){
+            user.setName(user.getPhone());
+        }
+
+       // baseMapper.insert(user);
+
+        return Result.ok("新增成功");
+    }
 }

@@ -57,19 +57,8 @@ public class UserController extends CrudController<User,IUserService> {
             String firstError = result.getFieldErrors().get(0).getDefaultMessage();
             return Result.failure(firstError);
         }
-        //设置默认值
-        t.setCreateTime(new Date());
-        t.setAmount(0);
-        t.setLevel(1);
-        t.setFreezeAmount(0);
-        t.setUpdateTime(new Date());
-        t.setStatus(0);
-        if (StringUtils.isBlank(t.getName())){
-            t.setName(t.getPhone());
-        }
 
-        userService.insert(t);
-        return Result.ok("新增成功");
+        return userService.addUser(t);
     }
 
     @ResponseBody
