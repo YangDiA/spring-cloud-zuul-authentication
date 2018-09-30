@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/liumapp/spring-cloud-zuul-authentication/
+          uri: https://github.com/YangDiA/spring-cloud-zuul-authentication/
           search-paths: conf
 
 server:
