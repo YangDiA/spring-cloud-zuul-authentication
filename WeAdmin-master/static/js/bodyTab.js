@@ -21,7 +21,7 @@ layui.define(["element","jquery","layer"],function(exports){
 		var l = layer.load(1);
         $.ajax({
             type: "GET",
-            url: "/sys-api/sys/menu/leftmenu",
+            url: "/sys-api/sys/menu/unchk/leftmenu",
              //url: "/admin/static/json/menu.json",
             dataType: "JSON",
             data: {},

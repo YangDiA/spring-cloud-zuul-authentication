@@ -83,7 +83,7 @@ public class Result implements Serializable {
      * @return
      */
     public boolean checkOk() {
-        return msg==null||"200".equals(msg);
+        return "200".equals(code);
     }
 
     public long getCount() {

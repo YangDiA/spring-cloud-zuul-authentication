@@ -55,7 +55,7 @@ public class MenuController extends CrudController<Menu,IMenuService> {
      * @return
      */
     @ResponseBody
-    @GetMapping("/leftmenu")
+    @GetMapping("/unchk/leftmenu")
     public Result leftmenu(){
         System.out.println("*****************");
         Result result = Result.ok();

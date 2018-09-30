@@ -22,7 +22,7 @@ public class User implements Serializable {
     /**
      * 会员ID
      */
-    @TableId(value = "user_id", type = IdType.AUTO)
+    @TableId(value = "user_id", type = IdType.INPUT)
     private Integer userId;
     /**
      * 会员姓名
@@ -65,7 +65,7 @@ public class User implements Serializable {
     /**
      * 银行卡号
      */
-    private Integer bankId;
+    private String bankId;
     /**
      * 开户行地址
      */
@@ -165,11 +165,11 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public Integer getBankId() {
+    public String getBankId() {
         return bankId;
     }
 
-    public void setBankId(Integer bankId) {
+    public void setBankId(String bankId) {
         this.bankId = bankId;
     }
 
@@ -197,24 +197,4 @@ public class User implements Serializable {
         this.updateTime = updateTime;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-        ", userId=" + userId +
-        ", name=" + name +
-        ", password=" + password +
-        ", phone=" + phone +
-        ", eamail=" + eamail +
-        ", status=" + status +
-        ", recommendId=" + recommendId +
-        ", level=" + level +
-        ", amount=" + amount +
-        ", freezeAmount=" + freezeAmount +
-        ", address=" + address +
-        ", bankId=" + bankId +
-        ", bankAddress=" + bankAddress +
-        ", createTime=" + createTime +
-        ", updateTime=" + updateTime +
-        "}";
-    }
 }

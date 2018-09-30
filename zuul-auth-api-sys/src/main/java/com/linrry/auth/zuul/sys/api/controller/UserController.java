@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.linrry.auth.zuul.common.Result;
 import com.linrry.auth.zuul.common.controller.CrudController;
 import com.linrry.auth.zuul.sys.api.entity.User;
+import com.linrry.auth.zuul.sys.api.requset.AddMicroUserDTO;
 import com.linrry.auth.zuul.sys.api.service.IUserRoleService;
 import com.linrry.auth.zuul.sys.api.service.IUserService;
 import org.apache.commons.lang.StringUtils;
@@ -129,6 +130,18 @@ public class UserController extends CrudController<User,IUserService> {
         //roleMenuService.addRoleMenu(roleId,menuIds);
         userRoleService.addUserRole(userId,roleIds);
         return result;
+    }
+
+
+    /**
+     *子项目添加系统用户
+     * @param addMicroUserDTO
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/addMicroUser")
+    public Result addMicroUser(@RequestBody AddMicroUserDTO addMicroUserDTO){
+        return userRoleService.addMicroUser(addMicroUserDTO);
     }
 
 }

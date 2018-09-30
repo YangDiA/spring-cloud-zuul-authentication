@@ -36,7 +36,7 @@ layui.use(['form','layer','jquery','admin','ajaxpost'], function(){
             parent.layer.close(index);
         });*/
 
-        $('#add').attr('disabled', true);
+       // $('#add').attr('disabled', true);
 
         //发异步
         ajaxpost.ajax("/reward-api/reward/user/add",null, data.field,function (res) {

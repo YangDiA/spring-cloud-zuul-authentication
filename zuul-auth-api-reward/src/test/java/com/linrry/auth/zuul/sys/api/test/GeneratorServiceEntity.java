@@ -25,7 +25,7 @@ public class GeneratorServiceEntity {
 
     private void generateByTables(String packageName, String... tableNames){
         GlobalConfig config = new GlobalConfig();
-        String dbUrl = "jdbc:mysql://localhost:3306/db1";
+        String dbUrl = "jdbc:mysql://localhost:3306/pos_reward";
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)

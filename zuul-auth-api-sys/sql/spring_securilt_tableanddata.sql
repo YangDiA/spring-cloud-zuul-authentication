@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-09-24 19:26:32
+Date: 2018-09-30 16:28:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -79,7 +79,7 @@ CREATE TABLE `menu` (
   `code` varchar(50) NOT NULL COMMENT '编码',
   `dataResource` varchar(50) DEFAULT NULL COMMENT '数据权限',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of menu
@@ -114,10 +114,12 @@ INSERT INTO `menu` VALUES ('27', 'k线图', '21', './pages/echarts/echarts6.html
 INSERT INTO `menu` VALUES ('28', '热力图', '21', './pages/echarts/echarts7.html', '&#xe6a7;', '27', '2', '0507', null);
 INSERT INTO `menu` VALUES ('29', '仪表图', '21', './pages/echarts/echarts8.html', '&#xe6a7;', '28', '2', '0508', null);
 INSERT INTO `menu` VALUES ('30', '地图DIY实例', '21', './pages/echarts/echarts9.html', '&#xe6a7;', '29', '2', '0509', null);
-INSERT INTO `menu` VALUES ('31', '奖励微服务', '0', null, '&#xe6ce;', '30', '1', '06', null);
+INSERT INTO `menu` VALUES ('31', 'POS奖励管理', '0', null, '&#xe6ce;', '30', '1', '06', null);
 INSERT INTO `menu` VALUES ('32', '用户管理', '31', './pages/reward/user/list.html', '&#xe6a7;', '31', '2', '0601', null);
 INSERT INTO `menu` VALUES ('33', '月奖管理', '31', './pages/reward/reward/list.html', '&#xe6a7;', '32', '2', '0602', null);
 INSERT INTO `menu` VALUES ('34', '流水管理', '31', './pages/reward/funds/list.html', '&#xe6a7;', '33', '2', '0603', null);
+INSERT INTO `menu` VALUES ('36', '文章删除', '8', './page/404.html', null, '0', '2', '0203', null);
+
 -- ----------------------------
 -- Table structure for role
 -- ----------------------------
@@ -129,16 +131,17 @@ CREATE TABLE `role` (
   `roleDesc` varchar(300) DEFAULT NULL COMMENT '角色描述',
   `createTime` datetime DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of role
 -- ----------------------------
 INSERT INTO `role` VALUES ('1', 'ROLE_PERSONAL', 'psersonal项目角色', 'psersonal项目角色', '2018-05-09 11:45:47');
-INSERT INTO `role` VALUES ('2', 'ROLE_BOSS', '超级管理员', '超级管理员', '2018-05-09 11:44:17');
+INSERT INTO `role` VALUES ('2', 'ROLE_BOSS', '管理员', '管理员', '2018-05-09 11:44:17');
 INSERT INTO `role` VALUES ('3', 'ROLE_MANAGER', '普通管理员', '普通管理员', '2018-05-09 11:57:03');
 INSERT INTO `role` VALUES ('4', 'ROLE_EMPLOYEE', '测试角色', '测试角色', '2018-05-09 11:57:05');
 INSERT INTO `role` VALUES ('5', 'ROLE_SYS', 'sys项目管理', 'sys项目管理', '2018-05-09 14:35:14');
+INSERT INTO `role` VALUES ('6', 'ROLE_REWARD', 'POS微服务', 'POS项目', '2018-09-24 22:17:53');
 
 -- ----------------------------
 -- Table structure for role_apirule
@@ -174,55 +177,59 @@ CREATE TABLE `role_menu` (
 -- ----------------------------
 -- Records of role_menu
 -- ----------------------------
+INSERT INTO `role_menu` VALUES ('0636f69359f44a0fb68e43f660f941e2', '2', '6');
+INSERT INTO `role_menu` VALUES ('069f976c2b1745b4b49d76593c390aa9', '2', '28');
 INSERT INTO `role_menu` VALUES ('079a13583d844ce58ab175a0327430ed', '5', '19');
-INSERT INTO `role_menu` VALUES ('08edfe6287124040aef59b81fc9b9ce5', '2', '12');
-INSERT INTO `role_menu` VALUES ('0ed4a05ced8e4fce84a679e264b24e58', '2', '22');
-INSERT INTO `role_menu` VALUES ('1369a53e33e9431a94950df4e990c135', '2', '6');
-INSERT INTO `role_menu` VALUES ('1430c0fa26ce4c8290468d261cd8e745', '2', '10');
+INSERT INTO `role_menu` VALUES ('081ba082ec7c44fb891a69f5b10d8f8d', '2', '11');
+INSERT INTO `role_menu` VALUES ('12152c2863ca42889c49415179c5e478', '2', '4');
+INSERT INTO `role_menu` VALUES ('1dd2a671f7d245de921121cd49ecf2e1', '2', '30');
 INSERT INTO `role_menu` VALUES ('220c8cbd66ac42e88719edba001856e8', '1', '3');
 INSERT INTO `role_menu` VALUES ('225238a58b9c40ca8e107f3b578b259f', '1', '5');
-INSERT INTO `role_menu` VALUES ('2686aa382f23466e8a0a3db345db4bb2', '2', '18');
+INSERT INTO `role_menu` VALUES ('282b40f8dbe246f7887d3102fa501842', '2', '20');
 INSERT INTO `role_menu` VALUES ('2833ef99caff400fa925dba3f38bd2e8', '5', '13');
-INSERT INTO `role_menu` VALUES ('295d6aed236845eeb891be208bf0b0e7', '2', '17');
 INSERT INTO `role_menu` VALUES ('29e7ca8bf1aa4d02b7781f3b481bcfd7', '1', '4');
 INSERT INTO `role_menu` VALUES ('2b2d53367bf54a938f738d26134c44ef', '1', '6');
-INSERT INTO `role_menu` VALUES ('3ab4d37a37fd4b6798d620fcc65b258b', '2', '25');
-INSERT INTO `role_menu` VALUES ('3da18b3190bc43beb4f12cd77c5b1955', '2', '7');
-INSERT INTO `role_menu` VALUES ('4d60153d9f474f6d874f8ef41c033a4d', '2', '20');
-INSERT INTO `role_menu` VALUES ('4e98132e5a814cf8be84d7d4056028fb', '2', '8');
-INSERT INTO `role_menu` VALUES ('4edf6323e6be461690fc4053bd672084', '2', '3');
-INSERT INTO `role_menu` VALUES ('4f1955e57227413299bc6ca5902d090b', '2', '19');
-INSERT INTO `role_menu` VALUES ('4f7d557b6555434f8ad465c803010929', '2', '28');
+INSERT INTO `role_menu` VALUES ('37a03a80fb9440589153f4e1adff155b', '2', '3');
+INSERT INTO `role_menu` VALUES ('387a50792d16442d9739fdec6128d167', '2', '26');
+INSERT INTO `role_menu` VALUES ('38dc4cc271d2479881fb512d40b9aefe', '2', '5');
+INSERT INTO `role_menu` VALUES ('4109793fdd0a46d08ac377c311365cf5', '2', '18');
+INSERT INTO `role_menu` VALUES ('4477f48a88164fd1bb59bacc4540cd42', '2', '2');
+INSERT INTO `role_menu` VALUES ('47701af0a07e48f79f829f6bd78a4f17', '2', '7');
 INSERT INTO `role_menu` VALUES ('5254b66270fd4f2c8380e342fd1bdded', '4', '19');
-INSERT INTO `role_menu` VALUES ('58d62525b4d44ac9993348e03c9db1b4', '2', '27');
 INSERT INTO `role_menu` VALUES ('5b7149e8e03945fbb522ed5f354a37f1', '1', '1');
-INSERT INTO `role_menu` VALUES ('5db16f32c3464f9db97b97f1fee5822c', '2', '16');
 INSERT INTO `role_menu` VALUES ('5db96ffb928f4fa9833c70d003618fd6', '4', '17');
-INSERT INTO `role_menu` VALUES ('603125eeb6da45aeb90a4d76e2e3882e', '2', '11');
 INSERT INTO `role_menu` VALUES ('6899dce226d34470b4a8c0507c8ad1a8', '5', '16');
-INSERT INTO `role_menu` VALUES ('69374991b9ed4cb0ae13eb73d9e76b8d', '2', '30');
-INSERT INTO `role_menu` VALUES ('6fba0eaaeef64dabbb2ceab1df7d86cc', '2', '5');
+INSERT INTO `role_menu` VALUES ('6ed52b34d8a34ef5b0319aa18fc3ce0e', '2', '13');
 INSERT INTO `role_menu` VALUES ('7125154c26964dd0a56748713f5fb001', '1', '2');
-INSERT INTO `role_menu` VALUES ('7a0a247ee5cc4a1391feb8324d93d830', '2', '26');
+INSERT INTO `role_menu` VALUES ('75d64c40880a44fd84c5bae03cf23eb8', '2', '23');
 INSERT INTO `role_menu` VALUES ('7bb56e4dc5164be09defb24a2d752aa5', '5', '17');
-INSERT INTO `role_menu` VALUES ('7fed9f8809244c2ab8280ff88af21597', '2', '24');
-INSERT INTO `role_menu` VALUES ('84c81cf66c7f49e7a9233a083c323a0d', '2', '4');
+INSERT INTO `role_menu` VALUES ('7e12384508ac43a4960df6bb2c900602', '2', '12');
+INSERT INTO `role_menu` VALUES ('8a008fa1b7bb448ba25f1e1418a7f836', '2', '24');
 INSERT INTO `role_menu` VALUES ('92af75b1308c4979ab8172816474cfca', '4', '18');
+INSERT INTO `role_menu` VALUES ('9cf58d8049ab417396d9bd43a7835858', '2', '21');
 INSERT INTO `role_menu` VALUES ('9f0ae56781d2473d917be1101456b536', '4', '20');
-INSERT INTO `role_menu` VALUES ('a0607c84d86a4cffb920a3d298d40fc6', '2', '23');
-INSERT INTO `role_menu` VALUES ('a266c1ce313a42948887691c9f1917c7', '2', '2');
+INSERT INTO `role_menu` VALUES ('a1d861643f014d69bd43932c4547dd8e', '2', '27');
+INSERT INTO `role_menu` VALUES ('a2813c7c96304561b3f713d9bc9975a0', '2', '17');
+INSERT INTO `role_menu` VALUES ('a2895e25c5f24070a8e28df662bc18f1', '2', '25');
+INSERT INTO `role_menu` VALUES ('a56432ea89ec4cc19070432ba207c2a9', '2', '8');
+INSERT INTO `role_menu` VALUES ('a604106f6b584d54bc39c7b5c50221ae', '2', '29');
+INSERT INTO `role_menu` VALUES ('a7ab04f67ef749eea66ff659e1beca51', '2', '9');
 INSERT INTO `role_menu` VALUES ('aa11d19bc62440e7bf94d7718494fe0d', '5', '20');
 INSERT INTO `role_menu` VALUES ('aa372dc0eb9e482690089176d1de5aba', '4', '16');
 INSERT INTO `role_menu` VALUES ('acc50fd6256a4aa8a1e2ed46861889f5', '4', '13');
 INSERT INTO `role_menu` VALUES ('adbdeae2d0fd4debaff0a96fa4bf32fc', '5', '11');
-INSERT INTO `role_menu` VALUES ('b1b818fcd46b46b1b1d62123ac228293', '2', '13');
-INSERT INTO `role_menu` VALUES ('b860e4bc64ff42d9931688df56e6c159', '2', '9');
-INSERT INTO `role_menu` VALUES ('b954354279e549409103fdecb740b690', '2', '1');
-INSERT INTO `role_menu` VALUES ('cb2c850198a9475f945d989423ec2295', '2', '29');
+INSERT INTO `role_menu` VALUES ('ae14e31c71be4bbd816c57be8fa913c7', '2', '19');
+INSERT INTO `role_menu` VALUES ('b1c8226687fe4b38af14460e7dcafbbc', '2', '16');
+INSERT INTO `role_menu` VALUES ('bf6bcdb438854e0b9b3d78913b5a049a', '2', '31');
+INSERT INTO `role_menu` VALUES ('ca83f1e3903a4348980cba86903ecf8f', '2', '34');
 INSERT INTO `role_menu` VALUES ('d710dee7092e486fb6e8aa89ba653996', '5', '18');
 INSERT INTO `role_menu` VALUES ('de20665875be4caf90bb268346f4fbd7', '1', '7');
+INSERT INTO `role_menu` VALUES ('e295a1b53006465c9f035623e6fbbd29', '2', '1');
+INSERT INTO `role_menu` VALUES ('e88e9bc4368247cfb3042b1b8d7e9a6d', '2', '32');
 INSERT INTO `role_menu` VALUES ('ed0aa7eca377427caff1863aa8dfd852', '5', '12');
-INSERT INTO `role_menu` VALUES ('ffbb4d80d21b4f6b8a5b409530090bcf', '2', '21');
+INSERT INTO `role_menu` VALUES ('ed380b742fa14b8fbbdcc0ff008b45fa', '2', '33');
+INSERT INTO `role_menu` VALUES ('f8896148721a4012ad8265a1250f58ec', '2', '22');
+INSERT INTO `role_menu` VALUES ('f91a9063a7de4100a4e645c200f11149', '2', '10');
 
 -- ----------------------------
 -- Table structure for user
@@ -238,19 +245,15 @@ CREATE TABLE `user` (
   `type` tinyint(4) DEFAULT '1' COMMENT '1:个人用户，以手机为登录凭证 2:企业用户，以邮箱为登录凭证',
   `creatAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'boss', 'boss@gmail.com', '13560005194', '$2a$10$s2jT6rTEoreXOCA83VtCluil3Yz7Jc/U858d6AstZZGwaJZVHhLCO', '1', '2', '2018-02-14 00:00:00');
-INSERT INTO `user` VALUES ('2', 'manager', 'manager@gmail.com', '1234', '$2a$10$s2jT6rTEoreXOCA83VtCluil3Yz7Jc/U858d6AstZZGwaJZVHhLCO', '1', '2', '2018-02-14 00:00:00');
-INSERT INTO `user` VALUES ('3', 'employee', 'employee@gmail.com', '12345', '$2a$10$6fBue5h0tTs3GNHhQKiv5eHJJ7UxyBN1kAtBLu9JvHr5k4FKER7eK', '1', '2', '2018-02-14 00:00:00');
-INSERT INTO `user` VALUES ('4', 'disemployee', 'disemployee@gmail.com', '123456', '$2a$10$6fBue5h0tTs3GNHhQKiv5eHJJ7UxyBN1kAtBLu9JvHr5k4FKER7eK', '0', '2', '2018-02-14 00:00:00');
-INSERT INTO `user` VALUES ('5', 'personal', 'personal@gmail.com', '12312312311', '$2a$10$6fBue5h0tTs3GNHhQKiv5eHJJ7UxyBN1kAtBLu9JvHr5k4FKER7eK', '1', '1', '2018-02-14 00:00:00');
-INSERT INTO `user` VALUES ('6', '13560005194', '13560005194@qq.com', '13560005194', '$2a$10$X5SGXK/xYEqsYQDjowwz1eSk49Ua7jEHaTKuOM94ibWLjoBxDGjAy', '1', '1', null);
+INSERT INTO `user` VALUES ('6', '13560005194', '13560005194@qq.com', '13560005194', '$2a$10$s2jT6rTEoreXOCA83VtCluil3Yz7Jc/U858d6AstZZGwaJZVHhLCO', '1', '1', '2018-09-30 16:16:23');
 INSERT INTO `user` VALUES ('7', '13560005195', '13560005195@qq.com', '13560005195', '$2a$10$i4.jAPZQrZAYAav3AqzGLeDsA5y.rM1HT.SEXJokBZKstmDWtMxue', '1', '1', null);
-INSERT INTO `user` VALUES ('8', '13560005196', '13560005196@qq.com', '13560005196', '$2a$10$jk.qyBmlQ.fCpKTyME8iBeUbaA8nYM9RyaTcs07ORNV5ZNcLy4nwe', '1', '1', '2018-09-22 22:02:27');
+INSERT INTO `user` VALUES ('8', '13560005196', '13560005196@qq.com', '18665807774', '$2a$10$s2jT6rTEoreXOCA83VtCluil3Yz7Jc/U858d6AstZZGwaJZVHhLCO', '1', '1', '2018-09-22 22:02:27');
+INSERT INTO `user` VALUES ('12', '13560001234', '13560001234@qq.com', '13560001234', '$2a$10$NLdLfxj6pImtds75VbqnTORi4HOjEL5IbuLqZF8TwFev3vvGohRMS', '1', '1', '2018-09-30 16:23:11');
 
 -- ----------------------------
 -- Table structure for user_role
@@ -261,15 +264,11 @@ CREATE TABLE `user_role` (
   `userId` bigint(20) unsigned DEFAULT NULL,
   `roleId` bigint(20) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
-INSERT INTO `user_role` VALUES ('1', '1', '1');
-INSERT INTO `user_role` VALUES ('2', '1', '2');
-INSERT INTO `user_role` VALUES ('3', '1', '3');
-INSERT INTO `user_role` VALUES ('4', '1', '4');
 INSERT INTO `user_role` VALUES ('5', '2', '3');
 INSERT INTO `user_role` VALUES ('6', '2', '4');
 INSERT INTO `user_role` VALUES ('7', '2', '1');
@@ -278,7 +277,18 @@ INSERT INTO `user_role` VALUES ('9', '3', '4');
 INSERT INTO `user_role` VALUES ('10', '4', '1');
 INSERT INTO `user_role` VALUES ('11', '4', '4');
 INSERT INTO `user_role` VALUES ('12', '5', '1');
-INSERT INTO `user_role` VALUES ('13', '1', '5');
 INSERT INTO `user_role` VALUES ('14', '2', '5');
-INSERT INTO `user_role` VALUES ('15', '8', '1');
-INSERT INTO `user_role` VALUES ('16', '8', '2');
+INSERT INTO `user_role` VALUES ('17', '1', '1');
+INSERT INTO `user_role` VALUES ('18', '1', '2');
+INSERT INTO `user_role` VALUES ('19', '1', '3');
+INSERT INTO `user_role` VALUES ('20', '1', '4');
+INSERT INTO `user_role` VALUES ('21', '1', '5');
+INSERT INTO `user_role` VALUES ('22', '1', '6');
+INSERT INTO `user_role` VALUES ('25', '8', '2');
+INSERT INTO `user_role` VALUES ('26', '8', '5');
+INSERT INTO `user_role` VALUES ('27', '8', '6');
+INSERT INTO `user_role` VALUES ('28', '10', '5');
+INSERT INTO `user_role` VALUES ('29', '10', '6');
+INSERT INTO `user_role` VALUES ('30', '6', '5');
+INSERT INTO `user_role` VALUES ('31', '6', '6');
+INSERT INTO `user_role` VALUES ('32', '12', '6');

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
@@ -45,7 +46,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             user.setName(user.getPhone());
         }
 
-       // baseMapper.insert(user);
+        Map<String ,Object> sysUser =  (Map<String, Object>) result.getData();
+
+        user.setUserId(Integer.valueOf(sysUser.get("id")+""));
+        user.setPassword(sysUser.get("password")+"");
+        baseMapper.insert(user);
 
         return Result.ok("新增成功");
     }

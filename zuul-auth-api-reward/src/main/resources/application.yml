@@ -22,7 +22,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
     #schema: classpath:/db/schema-h2.sql
     #data: classpath:/db/data-h2.sql
-    url: jdbc:mysql://127.0.0.1:3306/db1?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/pos_reward?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
     username: root
     password: yangdi
     platform: mysql

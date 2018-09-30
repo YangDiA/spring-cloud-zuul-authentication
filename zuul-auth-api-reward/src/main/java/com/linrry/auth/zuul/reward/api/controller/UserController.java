@@ -73,5 +73,7 @@ public class UserController extends CrudController<User,IUserService> {
         userService.updateById(t);
         return Result.ok("更新成功");
     }
+
+
 }
 

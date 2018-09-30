@@ -107,7 +107,7 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
             if(data.length > 0) {
                 var ids ="";
                 for(var i=0;i<data.length;i++){
-                    ids += data[i].id+",";
+                    ids += data[i].userId+",";
                 }
 
                 layer.confirm('确认要删除吗？删除后不能找回', function(index) {
