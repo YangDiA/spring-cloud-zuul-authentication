@@ -142,7 +142,8 @@ layui.use(['table', 'jquery', 'admin','laydate','ajaxpost'], function() {
 
                 where: {
 
-                    userName:$('#userNameSearch').val()
+                    userName:$('#userNameSearch').val(),
+                    recommendId:$('#recommendIdSearch').val()
 
                 },
                 page: {

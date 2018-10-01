@@ -37,12 +37,15 @@ public class UserController extends CrudController<User,IUserService> {
     @RequestMapping("/page")
     public Result page(
             @RequestParam(required = true, defaultValue = "1") Integer page,
-            @RequestParam(defaultValue = "10") Integer limit, String userName) {
+            @RequestParam(defaultValue = "10") Integer limit, String userName,String recommendId) {
 
         Result result = Result.ok();
         EntityWrapper<User> ew = new EntityWrapper<User>();
         if (StringUtils.isNotBlank(userName)) {
             ew.like("name", userName);
+        }
+        if (StringUtils.isNotBlank(recommendId)) {
+            ew.eq("recommend_id", recommendId);
         }
         Page<User> pageData = userService.selectPage(new Page<User>(page, limit), ew);
         result.setData(pageData.getRecords()).setCount(pageData.getTotal());
