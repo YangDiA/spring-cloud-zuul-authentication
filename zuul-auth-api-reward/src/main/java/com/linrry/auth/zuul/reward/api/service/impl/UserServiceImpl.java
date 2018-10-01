@@ -45,6 +45,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         if (StringUtils.isBlank(user.getName())){
             user.setName(user.getPhone());
         }
+        if (StringUtils.isBlank(user.getPassword())){
+            user.setPassword(user.getPhone());
+        }
 
         Map<String ,Object> sysUser =  (Map<String, Object>) result.getData();
 
