@@ -8,6 +8,8 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
 import com.linrry.auth.zuul.common.Result;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * (描述用途)
@@ -15,6 +17,7 @@ import com.linrry.auth.zuul.common.Result;
  * @author Linrry
  * @date 2018-10-01 下午 12:01
  */
+@Component
 public class SendSmsUtils {
 
     //产品名称:云通信短信API产品,开发者无需替换
@@ -22,10 +25,14 @@ public class SendSmsUtils {
     //产品域名,开发者无需替换
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    static final String accessKeyId = "LTAIUP4dipqmqony";
-    static final String accessKeySecret = "sua36PyREEuN6u1G7njgrysEsWbWIu";
+    @Value("${sms.accessKeyId}")
+      String accessKeyId ;
 
-    public static Result sendSms(String phone,String templateCode, String templateParam){
+
+    @Value("${sms.accessKeySecret}")
+      String accessKeySecret ;
+
+    public  Result sendSms(String phone,String templateCode, String templateParam){
         Result result = new Result();
 
         //可自助调整超时时间

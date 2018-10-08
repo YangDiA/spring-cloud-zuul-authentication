@@ -38,6 +38,9 @@ public class SmslogController extends CrudController<Smslog ,ISmslogService> {
     @Autowired
     private ISmslogService smslogService;
 
+    @Autowired
+    private SendSmsUtils sendSmsUtils;
+
     /**
      * 注册 登录  找回密码 银行绑卡 发送短信验证码
      * @param t
@@ -62,7 +65,7 @@ public class SmslogController extends CrudController<Smslog ,ISmslogService> {
                 .valueOf(new Random().nextInt(899999) + 100000);
         Map<String,Object> sendSmsData = new HashMap<>();
         sendSmsData.put("code",verifyCode);
-        Result resultSendSms = SendSmsUtils.sendSms(t.getPhone(), templateCode, JSON.toJSONString(sendSmsData));
+        Result resultSendSms = sendSmsUtils.sendSms(t.getPhone(), templateCode, JSON.toJSONString(sendSmsData));
 
         Smslog smslog = new Smslog();
         smslog.setContent(JSON.toJSONString(sendSmsData));

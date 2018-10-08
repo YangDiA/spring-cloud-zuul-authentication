@@ -66,3 +66,7 @@ mybatis-plus:
 #logging
 logging:
   level: error
+
+sms:
+  accessKeyId: LTAIUP4dypqmqont
+  accessKeySecret: sua36PyREEkN6u1G7njgrysEsWbWIk
